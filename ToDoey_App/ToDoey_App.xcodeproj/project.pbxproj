@@ -16,6 +16,8 @@
 		1EF12F32281617E7003FCD7E /* ToDoey_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF12F31281617E7003FCD7E /* ToDoey_AppTests.swift */; };
 		1EF12F3C281617E7003FCD7E /* ToDoey_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF12F3B281617E7003FCD7E /* ToDoey_AppUITests.swift */; };
 		1EF12F3E281617E7003FCD7E /* ToDoey_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF12F3D281617E7003FCD7E /* ToDoey_AppUITestsLaunchTests.swift */; };
+		7A71F6BB281771B6003B204D /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A71F6BA281771B6003B204D /* TableViewController.swift */; };
+		7A71F6BD281776D1003B204D /* ReminderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A71F6BC281776D1003B204D /* ReminderDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		1EF12F37281617E7003FCD7E /* ToDoey_AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoey_AppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EF12F3B281617E7003FCD7E /* ToDoey_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoey_AppUITests.swift; sourceTree = "<group>"; };
 		1EF12F3D281617E7003FCD7E /* ToDoey_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoey_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		7A71F6BA281771B6003B204D /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		7A71F6BC281776D1003B204D /* ReminderDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,8 @@
 				1EF12F1A281617E6003FCD7E /* AppDelegate.swift */,
 				1EF12F1C281617E6003FCD7E /* SceneDelegate.swift */,
 				1EF12F1E281617E6003FCD7E /* ViewController.swift */,
+				7A71F6BA281771B6003B204D /* TableViewController.swift */,
+				7A71F6BC281776D1003B204D /* ReminderDetailViewController.swift */,
 				1EF12F20281617E6003FCD7E /* Main.storyboard */,
 				1EF12F23281617E7003FCD7E /* Assets.xcassets */,
 				1EF12F25281617E7003FCD7E /* LaunchScreen.storyboard */,
@@ -260,7 +266,9 @@
 			files = (
 				1EF12F1F281617E6003FCD7E /* ViewController.swift in Sources */,
 				1EF12F1B281617E6003FCD7E /* AppDelegate.swift in Sources */,
+				7A71F6BD281776D1003B204D /* ReminderDetailViewController.swift in Sources */,
 				1EF12F1D281617E6003FCD7E /* SceneDelegate.swift in Sources */,
+				7A71F6BB281771B6003B204D /* TableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
