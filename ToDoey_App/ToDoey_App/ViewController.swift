@@ -16,7 +16,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //sets bckground color of the view to black
+        self.view.backgroundColor = UIColor.black
         tableView.register(UITableViewCell.self,
                                forCellReuseIdentifier: "TableViewCell")
         tableView.dataSource = self

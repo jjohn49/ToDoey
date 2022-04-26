@@ -14,7 +14,8 @@ class TableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //sets bckground color of the view to black
+        self.view.backgroundColor = UIColor.black
         data = [String]()
 
         // Uncomment the following line to preserve selection between presentations
@@ -38,6 +39,10 @@ class TableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reminderCell", for: indexPath)
 
         cell.textLabel?.text = data[indexPath.row]
+        //this sets the background color of eavh cell
+        cell.backgroundColor = UIColor.blue //find the light blue shade RGB values
+        //Makes the cells have rounded corners
+        cell.layer.cornerRadius = 8
 
         return cell
     }
