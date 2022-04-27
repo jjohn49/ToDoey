@@ -24,6 +24,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="428" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="0hJ-ew-1EA" kind="show" id="AHG-c5-1BQ"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -47,6 +50,45 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bo8-zE-CWy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-872" y="47"/>
+        </scene>
+        <!--Reminder Info View Controller-->
+        <scene sceneID="kzD-QH-sc8">
+            <objects>
+                <viewController title="Reminder Info View Controller" id="0hJ-ew-1EA" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7xV-Ja-SGd">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mrV-ub-7c9">
+                                <rect key="frame" x="61" y="115" width="303" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dec-Aj-R67">
+                                <rect key="frame" x="61" y="183" width="303" height="478"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="9n1-oJ-cia"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="zNf-yh-vnL" appends="YES" id="8ER-cW-UIs"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" id="Rab-7O-wUP">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="gul-6z-gPv"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x9j-2W-evf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="zNf-yh-vnL"/>
+            </objects>
+            <point key="canvasLocation" x="-53.271028037383175" y="-360.25917926565876"/>
         </scene>
         <!--Reminder Detail View Controller-->
         <scene sceneID="aqU-2o-41t">
@@ -75,8 +117,8 @@
                                 </items>
                             </navigationBar>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1M5-FF-oIJ">
-                                <rect key="frame" x="63" y="145" width="303" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="60.854368932064972" y="145" width="303.00000000000011" height="33.999999999999943"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -91,7 +133,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cEQ-hb-7NW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="HjG-Dl-QCK" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-87" y="47"/>
+            <point key="canvasLocation" x="-52" y="369"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="JrY-MI-o6v">
