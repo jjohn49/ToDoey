@@ -40,5 +40,24 @@ class ReminderDetailViewController: UIViewController {
             reminder = ""
         }
     }
+    //this is the date picker object
+    @IBOutlet weak var dueDate: UIDatePicker!
     
+    //this sets the format of the date picker and makes the info to the string
+    //Need to send the string to TableView
+    //Need to make it centered
+    @IBAction func dueDateChanger(_ sender: Any) {
+        let dueDateFormat = DateFormatter()
+        
+        dueDateFormat.dateStyle = DateFormatter.Style.short
+        dueDateFormat.timeStyle = DateFormatter.Style.short
+        
+        let strDueDate = dueDateFormat.string(from: dueDate.date)
+        
+        //this sets the text of the label
+        dateLabel.text = strDueDate
+    }
+    
+    //this is a test label ablove to show that the Date Picker properly works
+    @IBOutlet weak var dateLabel: UILabel!
 }

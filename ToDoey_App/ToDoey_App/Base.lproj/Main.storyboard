@@ -51,10 +51,10 @@
             </objects>
             <point key="canvasLocation" x="-872" y="47"/>
         </scene>
-        <!--View Controller-->
+        <!--Reminder Info View Controller-->
         <scene sceneID="TAQ-iY-peU">
             <objects>
-                <viewController id="QxB-Dt-GQi" sceneMemberID="viewController">
+                <viewController id="QxB-Dt-GQi" customClass="ReminderInfoViewController" customModule="ToDoey_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ddw-7m-ZxY">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -125,11 +125,27 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="dueDate" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="fEU-U1-t4F">
+                                <rect key="frame" x="0.0" y="564" width="428" height="162"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="dueDateChanger:" destination="iMH-gT-IoI" eventType="valueChanged" id="5U2-kp-lLR"/>
+                                </connections>
+                            </datePicker>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IYt-gr-qAT" userLabel="Date Picker Test Label (Remove later)">
+                                <rect key="frame" x="140" y="511" width="157" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="NtE-AS-2Jr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
+                        <outlet property="dateLabel" destination="IYt-gr-qAT" id="kCB-KQ-wsi"/>
+                        <outlet property="dueDate" destination="fEU-U1-t4F" id="nwf-jf-Awj"/>
                         <outlet property="reminderDetailBox" destination="YXi-nt-207" id="Tus-NZ-Jqw"/>
                         <outlet property="reminderDetails" destination="1M5-FF-oIJ" id="zYl-xP-fUC"/>
                     </connections>
@@ -137,7 +153,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cEQ-hb-7NW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="HjG-Dl-QCK" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-102" y="360"/>
+            <point key="canvasLocation" x="-102.33644859813083" y="359.61123110151192"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="JrY-MI-o6v">
