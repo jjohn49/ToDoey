@@ -11,6 +11,7 @@ class TableViewController: UITableViewController {
     
     var data = [String]()
     var newReminder: String = ""
+    var newReminderDueDate:String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +61,11 @@ class TableViewController: UITableViewController {
     
     @IBAction func done(segue:UIStoryboardSegue) {
         let reminderDetailVC = segue.source as! ReminderDetailViewController
+        //gets the reminder title
         newReminder = reminderDetailVC.reminder
+        //gets the due date for the reminder
+        newReminderDueDate = reminderDetailVC.reminderDueDate
+        
         
         //Checks if the reminder is empty
         //if it is empty it will add to data

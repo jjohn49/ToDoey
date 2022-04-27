@@ -15,6 +15,9 @@ class ReminderDetailViewController: UIViewController {
     @IBOutlet weak var reminderDetailBox: UITextView!
     var reminderDetail: String = ""
     
+    //Used to send the due date over the segue
+    var reminderDueDate:String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let borderColor : UIColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.0)
@@ -52,10 +55,11 @@ class ReminderDetailViewController: UIViewController {
         dueDateFormat.dateStyle = DateFormatter.Style.short
         dueDateFormat.timeStyle = DateFormatter.Style.short
         
-        let strDueDate = dueDateFormat.string(from: dueDate.date)
+        reminderDueDate = dueDateFormat.string(from: dueDate.date)
+        
         
         //this sets the text of the label
-        dateLabel.text = strDueDate
+        dateLabel.text = reminderDueDate
     }
     
     //this is a test label ablove to show that the Date Picker properly works
