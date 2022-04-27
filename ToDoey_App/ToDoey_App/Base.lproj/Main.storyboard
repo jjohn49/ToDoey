@@ -24,6 +24,9 @@
                                     <rect key="frame" x="0.0" y="0.0" width="428" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="QxB-Dt-GQi" kind="show" id="3kN-N5-Y9s"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -47,6 +50,40 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bo8-zE-CWy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-872" y="47"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="TAQ-iY-peU">
+            <objects>
+                <viewController id="QxB-Dt-GQi" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ddw-7m-ZxY">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q9S-tp-emb">
+                                <rect key="frame" x="63" y="120" width="303" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P3G-Uj-6h8">
+                                <rect key="frame" x="94" y="236" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Nz7-34-5pX"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="zQD-25-ONu">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="Qto-7o-ZBU"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gAX-O1-YAh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-89.719626168224295" y="-288.33693304535637"/>
         </scene>
         <!--Reminder Detail View Controller-->
         <scene sceneID="aqU-2o-41t">
@@ -100,7 +137,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cEQ-hb-7NW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="HjG-Dl-QCK" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-88.317757009345783" y="46.652267818574515"/>
+            <point key="canvasLocation" x="-102" y="360"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="JrY-MI-o6v">

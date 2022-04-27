@@ -21,7 +21,6 @@ class ReminderDetailViewController: UIViewController {
         reminderDetailBox.layer.borderWidth = 0.5
         reminderDetailBox.layer.borderColor = borderColor.cgColor
         reminderDetailBox.layer.cornerRadius = 5.0
-        reminderDetailBox
     }
     
     @IBAction func cancel(segue:UIStoryboardSegue) {
