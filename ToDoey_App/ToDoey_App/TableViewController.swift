@@ -11,7 +11,7 @@ class TableViewController: UITableViewController {
     
     var data = [String]()
     var newReminder: String = ""
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         //sets bckground color of the view to black
