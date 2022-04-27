@@ -61,9 +61,19 @@ class TableViewController: UITableViewController {
     @IBAction func done(segue:UIStoryboardSegue) {
         let reminderDetailVC = segue.source as! ReminderDetailViewController
         newReminder = reminderDetailVC.reminder
-           
-        data.append(newReminder)
-        tableView.reloadData()
+        
+        //Checks if the reminder is empty
+        //if it is empty it will add to data
+        if newReminder != ""{
+            data.append(newReminder)
+            tableView.reloadData()
+        }
+    }
+    
+    //Needed inorder for the cancel button in Reminder Detail View
+    //to go to the TableView 
+    @IBAction func cancel(segue:UIStoryboardSegue){
+        
     }
 
     @IBAction func startEditing(_ sender: Any) {

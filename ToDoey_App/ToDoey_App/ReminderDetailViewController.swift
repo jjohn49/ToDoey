@@ -27,8 +27,12 @@ class ReminderDetailViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "doneSegue" && reminderDetails.text != "" {
+        
+        if segue.identifier == "doneSegue"{
             reminder = reminderDetails.text!
+        }
+        else if segue.identifier == "cancelSegue"{
+            reminder = ""
         }
     }
 }

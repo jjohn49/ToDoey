@@ -63,7 +63,7 @@
                                     <navigationItem title="Add Reminder" id="UVk-p6-iTO">
                                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="VdG-7D-7gz">
                                             <connections>
-                                                <segue destination="HjG-Dl-QCK" kind="unwind" identifier="cancelSegue" unwindAction="cancelWithSegue:" id="LEc-TW-cTZ"/>
+                                                <segue destination="HjG-Dl-QCK" kind="unwind" unwindAction="cancelWithSegue:" id="w3W-te-ErG"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Done" id="7SX-yG-F7g">
