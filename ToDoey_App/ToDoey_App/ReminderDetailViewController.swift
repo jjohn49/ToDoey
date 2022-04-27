@@ -15,7 +15,7 @@ class ReminderDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //sets bckground color of the view to black
-        self.view.backgroundColor = UIColor.black
+        
     }
     
     @IBAction func cancel(segue:UIStoryboardSegue) {

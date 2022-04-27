@@ -15,7 +15,7 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //sets bckground color of the view to black
-        self.view.backgroundColor = UIColor.black
+        
         data = [String]()
 
         // Uncomment the following line to preserve selection between presentations
