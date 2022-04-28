@@ -40,6 +40,8 @@ class TableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reminderCell", for: indexPath)
+        
+    
 
         cell.textLabel?.text = data[indexPath.row]
         //this sets the background color of eavh cell
@@ -60,6 +62,8 @@ class TableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
+    
+    
     
     @IBAction func done(segue:UIStoryboardSegue) {
         let reminderDetailVC = segue.source as! ReminderDetailViewController

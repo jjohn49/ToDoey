@@ -19,6 +19,7 @@ class ReminderInfoViewController: UIViewController {
 
     @IBOutlet weak var reminderTitle: UINavigationItem!
     
+    //not done
     @IBAction func title(segue:UIStoryboardSegue){
         let reminderDetailVC = segue.source as! ReminderDetailViewController
         //gets the title of the task

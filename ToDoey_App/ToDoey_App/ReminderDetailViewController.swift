@@ -36,9 +36,6 @@ class ReminderDetailViewController: UIViewController {
          
     }
     
-    @IBAction func title(segue:UIStoryboardSegue) {
-         
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "doneSegue"{

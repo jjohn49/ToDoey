@@ -132,11 +132,7 @@
                                                         <segue destination="HjG-Dl-QCK" kind="unwind" unwindAction="cancelWithSegue:" id="w3W-te-ErG"/>
                                                     </connections>
                                                 </barButtonItem>
-                                                <barButtonItem key="rightBarButtonItem" title="Done" id="7SX-yG-F7g">
-                                                    <connections>
-                                                        <segue destination="HjG-Dl-QCK" kind="unwind" identifier="doneSegue" unwindAction="doneWithSegue:" id="paH-wZ-dec"/>
-                                                    </connections>
-                                                </barButtonItem>
+                                                <barButtonItem key="rightBarButtonItem" title="Done" id="7SX-yG-F7g"/>
                                             </navigationItem>
                                         </items>
                                     </navigationBar>
@@ -201,6 +197,7 @@
                         <outlet property="dueDate" destination="fEU-U1-t4F" id="nwf-jf-Awj"/>
                         <outlet property="reminderDetailBox" destination="YXi-nt-207" id="Tus-NZ-Jqw"/>
                         <outlet property="reminderDetails" destination="1M5-FF-oIJ" id="zYl-xP-fUC"/>
+                        <segue destination="HjG-Dl-QCK" kind="unwind" unwindAction="titleWithSegue:" id="v5U-WR-8e8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cEQ-hb-7NW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
