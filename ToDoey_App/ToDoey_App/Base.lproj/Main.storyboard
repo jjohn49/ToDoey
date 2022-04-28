@@ -25,7 +25,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="QxB-Dt-GQi" kind="show" id="3kN-N5-Y9s"/>
+                                    <segue destination="QxB-Dt-GQi" kind="show" identifier="infoSegue" id="3kN-N5-Y9s"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -67,7 +67,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P3G-Uj-6h8">
-                                <rect key="frame" x="94" y="236" width="240" height="128"/>
+                                <rect key="frame" x="94" y="312" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NUU-XX-ilr">
+                                <rect key="frame" x="63" y="208" width="303" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -80,6 +87,11 @@
                     <navigationItem key="navigationItem" id="zQD-25-ONu">
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="Qto-7o-ZBU"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="reminderDate" destination="NUU-XX-ilr" id="Iug-VE-SQ7"/>
+                        <outlet property="reminderInfo" destination="P3G-Uj-6h8" id="YXU-jf-HEn"/>
+                        <outlet property="reminderTitle" destination="q9S-tp-emb" id="Oyz-RP-udD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gAX-O1-YAh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -105,7 +117,7 @@
                                             <navigationItem title="Add Reminder" id="UVk-p6-iTO">
                                                 <barButtonItem key="leftBarButtonItem" title="Cancel" id="VdG-7D-7gz">
                                                     <connections>
-                                                        <segue destination="HjG-Dl-QCK" kind="unwind" unwindAction="cancelWithSegue:" id="w3W-te-ErG"/>
+                                                        <segue destination="HjG-Dl-QCK" kind="unwind" identifier="cancelSegue" unwindAction="cancelWithSegue:" id="w3W-te-ErG"/>
                                                     </connections>
                                                 </barButtonItem>
                                                 <barButtonItem key="rightBarButtonItem" title="Done" id="7SX-yG-F7g">
