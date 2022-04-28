@@ -9,11 +9,25 @@ import UIKit
 
 class ReminderInfoViewController: UIViewController {
 
+    var titleOfReminder:String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        //self.title = titleOfReminder
+        reminderTitle.title = titleOfReminder
         }
 
-
+    @IBOutlet weak var reminderTitle: UINavigationItem!
+    
+    @IBAction func title(segue:UIStoryboardSegue){
+        let reminderDetailVC = segue.source as! ReminderDetailViewController
+        //gets the title of the task
+        let titleFromReminder = reminderDetailVC.reminder
+        //tries to make the navigation item the title
+        titleOfReminder = titleFromReminder
+        
+        //reminderTitle.title = titleFromReminder
+    }
         // Do any additional setup after loading the view.
     }
     
