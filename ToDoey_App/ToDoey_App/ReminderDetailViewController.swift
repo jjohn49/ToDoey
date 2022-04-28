@@ -8,11 +8,13 @@
 import UIKit
 
 class ReminderDetailViewController: UIViewController {
-    
+
     @IBOutlet weak var reminderDetails: UITextField!
+    //reminder title
     var reminder: String = ""
     
     @IBOutlet weak var reminderDetailBox: UITextView!
+    //reminder details
     var reminderDetail: String = ""
     
     //Used to send the due date over the segue
@@ -35,13 +37,14 @@ class ReminderDetailViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if segue.identifier == "doneSegue"{
             reminder = reminderDetails.text!
         }
         else if segue.identifier == "cancelSegue"{
             reminder = ""
         }
+        //sets the reminderDetail to the text entered in the text box
+        reminderDetail = reminderDetailBox.text!
     }
     //this is the date picker object
     @IBOutlet weak var dueDate: UIDatePicker!

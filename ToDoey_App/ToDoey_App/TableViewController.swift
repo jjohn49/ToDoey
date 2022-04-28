@@ -11,7 +11,9 @@ class TableViewController: UITableViewController {
     
     var data = [String]()
     var newReminder: String = ""
+    var newReminderDetail: String = ""
     var newReminderDueDate:String = ""
+    var reminderInfo: [String:[String]] = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,9 +65,18 @@ class TableViewController: UITableViewController {
         let reminderDetailVC = segue.source as! ReminderDetailViewController
         //gets the reminder title
         newReminder = reminderDetailVC.reminder
+        //gets the details for the reminder
+        newReminderDetail = reminderDetailVC.reminderDetail
         //gets the due date for the reminder
         newReminderDueDate = reminderDetailVC.reminderDueDate
+        //creates a String array to act as the value in reminder info
+        var detailsArray: [String] = []
+        // adds the details to the value array
+        detailsArray.append(newReminderDetail)
+        //adds the due date to the value array
+        detailsArray.append(newReminderDueDate)
         
+        reminderInfo.updateValue(detailsArray, forKey: newReminder)
         
         //Checks if the reminder is empty
         //if it is empty it will add to data
@@ -113,6 +124,7 @@ class TableViewController: UITableViewController {
         let itemToMove = data[sourceIndexPath.row]
         data.remove(at: sourceIndexPath.row)
         data.insert(itemToMove, at: destinationIndexPath.row)
+        
     }
 
     /*
