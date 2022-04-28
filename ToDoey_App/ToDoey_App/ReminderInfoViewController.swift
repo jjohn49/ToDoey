@@ -12,10 +12,12 @@ class ReminderInfoViewController: UIViewController {
     @IBOutlet weak var reminderTitle: UILabel!
     @IBOutlet weak var reminderDate: UILabel!
     @IBOutlet weak var reminderInfo: UILabel!
+    var titleOfReminder:String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        //self.title = titleOfReminder
+        reminderTitle.title = titleOfReminder
         }
 
     @IBAction func info(segue:UIStoryboardSegue) {
