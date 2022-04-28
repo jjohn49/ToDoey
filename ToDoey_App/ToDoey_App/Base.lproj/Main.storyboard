@@ -127,6 +127,7 @@
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1M5-FF-oIJ">
                                                 <rect key="frame" x="0.0" y="79.333333333333343" width="428" height="34"/>
+                                                <color key="backgroundColor" red="0.033257675100000002" green="0.78923511830000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -138,7 +139,7 @@
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YXi-nt-207">
                                                 <rect key="frame" x="0.0" y="251.66666666666669" width="428" height="105"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="backgroundColor" red="0.033257675100000002" green="0.78923511830000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <color key="textColor" systemColor="labelColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -151,6 +152,7 @@
                                             </label>
                                             <datePicker contentMode="scaleToFill" restorationIdentifier="dueDate" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="fEU-U1-t4F">
                                                 <rect key="frame" x="0.0" y="495" width="428" height="216"/>
+                                                <color key="backgroundColor" red="0.033257675100000002" green="0.78923511830000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <connections>
                                                     <action selector="dueDateChanger:" destination="iMH-gT-IoI" eventType="valueChanged" id="5U2-kp-lLR"/>
                                                 </connections>
