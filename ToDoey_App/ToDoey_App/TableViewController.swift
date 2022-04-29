@@ -45,7 +45,7 @@ class TableViewController: UITableViewController {
 
         cell.textLabel?.text = data[indexPath.row]
         //this sets the background color of eavh cell
-        cell.backgroundColor = UIColor.blue //find the light blue shade RGB values
+        //cell.backgroundColor = UIColor.blue //find the light blue shade RGB values
         //Makes the cells have rounded corners
         cell.layer.cornerRadius = 8
 
