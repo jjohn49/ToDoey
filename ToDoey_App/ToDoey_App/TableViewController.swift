@@ -12,8 +12,10 @@ class TableViewController: UITableViewController {
     var data = [String]()
     var newReminder: String = ""
     var newReminderDetail: String = ""
-    var newReminderDueDate:String = ""
+    var newReminderDueDate: String = ""
+    var selectedReminder: String = ""
     var reminderInfo: [String:[String]] = [:]
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,8 +42,6 @@ class TableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reminderCell", for: indexPath)
-        
-    
 
         cell.textLabel?.text = data[indexPath.row]
         //this sets the background color of eavh cell
@@ -62,8 +62,6 @@ class TableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
-    
-    
     
     @IBAction func done(segue:UIStoryboardSegue) {
         let reminderDetailVC = segue.source as! ReminderDetailViewController
@@ -90,6 +88,35 @@ class TableViewController: UITableViewController {
         }
     }
     
+//    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+//        let reminderInfoVC = ReminderInfoViewController(reminderDetails: reminderInfo)
+//
+//        selectedReminder = data[indexPath.row]
+//
+//        //Initializes the data from the cell selected
+//        reminderInfoVC.title = selectedReminder
+//
+//        self.navigationController?.pushViewController(reminderInfoVC, animated: true)
+//
+//    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //Checks if segue used is going to ReminderInfoViewContoller
+        if segue.identifier == "infoSegue"{
+            let reminderInfoVC = segue.destination as! ReminderInfoViewController
+
+            //Initializes the data from the cell selected
+            reminderInfoVC.reminder = newReminder
+            reminderInfoVC.reminderDetails = newReminderDetail
+            reminderInfoVC.reminderDueDate = newReminderDueDate
+            
+            // if we get the name of the cell put that variable name in the place holder area
+//            reminderInfoVC.reminder = (name of cell)
+//            reminderInfoVC.reminderDetails = reminderInfo[(name of cell)][0]
+//            reminderInfoVC.reminderDueDate = reminderInfo[(name of cell)][1]
+        }
+    }
+    
     //Needed inorder for the cancel button in Reminder Detail View
     //to go to the TableView 
     @IBAction func cancel(segue:UIStoryboardSegue){
@@ -100,7 +127,7 @@ class TableViewController: UITableViewController {
         isEditing = !isEditing
     }
     
-//    // Override to support editing the table view.
+    //    // Override to support editing the table view.
 //    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 //        if editingStyle == .delete {
 //            // Delete the row from the data source

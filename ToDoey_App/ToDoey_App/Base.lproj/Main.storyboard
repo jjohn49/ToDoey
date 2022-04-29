@@ -25,7 +25,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="QxB-Dt-GQi" kind="show" id="3kN-N5-Y9s"/>
+                                    <segue destination="QxB-Dt-GQi" kind="show" identifier="infoSegue" id="OJn-zP-xKy"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -51,10 +51,10 @@
             </objects>
             <point key="canvasLocation" x="-872" y="47"/>
         </scene>
-        <!--Title-->
+        <!--Reminder Info View Controller-->
         <scene sceneID="TAQ-iY-peU">
             <objects>
-                <viewController id="QxB-Dt-GQi" customClass="ReminderInfoViewController" customModule="ToDoey_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Reminder Info View Controller" id="QxB-Dt-GQi" customClass="ReminderInfoViewController" customModule="ToDoey_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ddw-7m-ZxY">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -102,7 +102,9 @@
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="Qto-7o-ZBU"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="reminderTitle" destination="zQD-25-ONu" id="Jjb-QK-4pd"/>
+                        <outlet property="reminderDate" destination="WZK-0d-qPB" id="tLI-GA-jZ8"/>
+                        <outlet property="reminderInfo" destination="sZf-OQ-R8C" id="DbF-e9-bJc"/>
+                        <outlet property="reminderTitle" destination="zQD-25-ONu" id="QZF-TD-Xqt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gAX-O1-YAh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -129,10 +131,14 @@
                                             <navigationItem title="Add Reminder" id="UVk-p6-iTO">
                                                 <barButtonItem key="leftBarButtonItem" title="Cancel" id="VdG-7D-7gz">
                                                     <connections>
-                                                        <segue destination="HjG-Dl-QCK" kind="unwind" unwindAction="cancelWithSegue:" id="w3W-te-ErG"/>
+                                                        <segue destination="HjG-Dl-QCK" kind="unwind" identifier="cancelSegue" unwindAction="cancelWithSegue:" id="w3W-te-ErG"/>
                                                     </connections>
                                                 </barButtonItem>
-                                                <barButtonItem key="rightBarButtonItem" title="Done" id="7SX-yG-F7g"/>
+                                                <barButtonItem key="rightBarButtonItem" title="Done" id="7SX-yG-F7g">
+                                                    <connections>
+                                                        <segue destination="HjG-Dl-QCK" kind="unwind" identifier="doneSegue" unwindAction="doneWithSegue:" id="zfc-Aj-t5p"/>
+                                                    </connections>
+                                                </barButtonItem>
                                             </navigationItem>
                                         </items>
                                     </navigationBar>
@@ -197,7 +203,6 @@
                         <outlet property="dueDate" destination="fEU-U1-t4F" id="nwf-jf-Awj"/>
                         <outlet property="reminderDetailBox" destination="YXi-nt-207" id="Tus-NZ-Jqw"/>
                         <outlet property="reminderDetails" destination="1M5-FF-oIJ" id="zYl-xP-fUC"/>
-                        <segue destination="HjG-Dl-QCK" kind="unwind" unwindAction="titleWithSegue:" id="v5U-WR-8e8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cEQ-hb-7NW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
