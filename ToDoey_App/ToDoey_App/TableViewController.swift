@@ -115,7 +115,7 @@ class TableViewController: UITableViewController {
         let path = self.getPath()
         print(path)
         if FileManager.default.fileExists(atPath: path){
-            var data = NSMutableDictionary(contentsOfFile: path) ?? ["":[""]]
+            let data = NSMutableDictionary(contentsOfFile: path) ?? ["":[""]]
             data.addEntries(from: reminderInfo)
             data.write(toFile: path, atomically: true)
         }

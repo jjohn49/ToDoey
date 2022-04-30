@@ -13,8 +13,8 @@ class ReminderInfoViewController: UIViewController {
     @IBOutlet weak var reminderInfo: UILabel!
     @IBOutlet weak var reminderDate: UILabel!
     var reminder = ""
-//    var reminderDetails = ""
-//    var reminderDueDate = ""
+    var reminderDetails = ""
+    var reminderDueDate = ""
 //    var dictionary: [String:[String]] = [:]
 //
 //    init(reminder: String, dictionary: [String:[String]]) {
