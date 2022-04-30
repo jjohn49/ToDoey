@@ -20,10 +20,26 @@ class TableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         
+        //gets the reminders from when you closed the app
+        //sets them to a NSDictionary called appData
         getRemindersFromPlistToAppData()
         
-        print(appData)
+        data = [String]()
+        
+        reminderInfo = appData as! Dictionary<String,Array<String>>
+        //print("start of reminder info xxxxxxxxxxxxxxxx")
+        //print(reminderInfo)
+        for key in reminderInfo.keys{
+            //print(key)
+            data.append(key)
+        }
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        
         /*let path = Bundle.main.path(forResource: "StorageLocation", ofType: "plist")!
         let dict = NSDictionary(contentsOfFile: path)
         
@@ -31,10 +47,9 @@ class TableViewController: UITableViewController {
         
         print(rem[0])*/
     
-    
         //sets bckground color of the view to black
-        print("THIS WORKED XXXXXXXXXXXXXXX")
-        data = [String]()
+        //print("THIS WORKED XXXXXXXXXXXXXXX")
+        //data = [String]()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -43,22 +58,8 @@ class TableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
-    //gets path of the plist
-    func getPath() -> String {
-        let plistFileName = "StorageLocation.plist"
-        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let documentPath = paths[0] as NSString
-        let plistPath = documentPath.appendingPathComponent(plistFileName)
-        return plistPath
-    }
     
-    func getRemindersFromPlistToAppData() {
-        let path = self.getPath()
-        if FileManager.default.fileExists(atPath: path){
-            appData = NSMutableDictionary(contentsOfFile: path) ?? ["":[""]]
-        }
-    }
-
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -89,6 +90,7 @@ class TableViewController: UITableViewController {
         if editingStyle == .delete{
             data.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+        //add stuff here to delete stuff from plist
         }
     }
     
@@ -109,7 +111,7 @@ class TableViewController: UITableViewController {
         
         reminderInfo.updateValue(detailsArray, forKey: newReminder)
         
-    
+        //sends the data to the plist
         let path = self.getPath()
         print(path)
         if FileManager.default.fileExists(atPath: path){
@@ -117,8 +119,6 @@ class TableViewController: UITableViewController {
             data.addEntries(from: reminderInfo)
             data.write(toFile: path, atomically: true)
         }
-        
-        
         
         //appData = reminderInfo as! NSDictionary
         //print(appData)
@@ -128,7 +128,10 @@ class TableViewController: UITableViewController {
         //if it is empty it will add to data
         if newReminder != ""{
             data.append(newReminder)
+            //print(data)
             tableView.reloadData()
+            
+            print(reminderInfo)
         }
     }
     
@@ -200,6 +203,24 @@ class TableViewController: UITableViewController {
         data.remove(at: sourceIndexPath.row)
         data.insert(itemToMove, at: destinationIndexPath.row)
         
+    }
+    
+    //gets path of the plist
+    func getPath() -> String {
+        let plistFileName = "StorageLocation.plist"
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentPath = paths[0] as NSString
+        let plistPath = documentPath.appendingPathComponent(plistFileName)
+        return plistPath
+    }
+    
+    //gets the reminders from the plist
+    //sets it to appData
+    func getRemindersFromPlistToAppData() {
+        let path = self.getPath()
+        if FileManager.default.fileExists(atPath: path){
+            appData = NSMutableDictionary(contentsOfFile: path) ?? ["":[""]]
+        }
     }
 
     /*

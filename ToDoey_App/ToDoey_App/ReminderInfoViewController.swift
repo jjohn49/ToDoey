@@ -24,6 +24,7 @@ class ReminderInfoViewController: UIViewController {
         reminderDate.text = reminderDueDate
     }
     
+    
     // Do any additional setup after loading the view.
 }
     
