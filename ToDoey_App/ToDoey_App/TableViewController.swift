@@ -130,7 +130,6 @@ class TableViewController: UITableViewController {
             data.append(newReminder)
             //print(data)
             tableView.reloadData()
-            
             print(reminderInfo)
         }
     }
@@ -147,15 +146,24 @@ class TableViewController: UITableViewController {
 //
 //    }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let cell = tableView.cellForRow(at: indexPath)
+        performSegue(withIdentifier: "getCellInfo", sender: cell)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //Checks if segue used is going to ReminderInfoViewContoller
-        if segue.identifier == "infoSegue"{
+        if segue.identifier == "getCellInfo"{
             let reminderInfoVC = segue.destination as! ReminderInfoViewController
-
+            let cell = sender as! UITableViewCell
+            
+            let name: String = (cell.textLabel?.text)! as String
             //Initializes the data from the cell selected
-            reminderInfoVC.reminder = newReminder
-            reminderInfoVC.reminderDetails = newReminderDetail
-            reminderInfoVC.reminderDueDate = newReminderDueDate
+            reminderInfoVC.reminderTitle.title = name
+            print((cell.textLabel?.text)! as String)
+            reminderInfoVC.reminderDetails = (reminderInfo[name]?[0])!
+            reminderInfoVC.reminderDueDate = (reminderInfo[name]?[1])!
             
             // if we get the name of the cell put that variable name in the place holder area
 //            reminderInfoVC.reminder = (name of cell)

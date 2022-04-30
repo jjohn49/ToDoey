@@ -31,9 +31,9 @@ class ReminderInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        reminderTitle.title = reminder
-//        reminderInfo.text = dictionary[reminder]![0]
-//        reminderDate.text = dictionary[reminder]![1]
+//        reminderTitle.title = reminder
+        reminderInfo.text = reminderDetails
+        reminderDate.text = reminderDueDate
     }
     
     

@@ -25,9 +25,6 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <color key="backgroundColor" red="0.78412245800000002" green="0.90161823829999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="QxB-Dt-GQi" kind="show" identifier="infoSegue" id="OJn-zP-xKy"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -47,6 +44,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="QxB-Dt-GQi" kind="show" identifier="getCellInfo" id="7R0-na-Ugn"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bo8-zE-CWy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
