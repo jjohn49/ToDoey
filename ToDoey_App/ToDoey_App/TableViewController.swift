@@ -15,20 +15,22 @@ class TableViewController: UITableViewController {
     var newReminderDueDate: String = ""
     var selectedReminder: String = ""
     var reminderInfo: [String:[String]] = [:]
+    var appData:NSMutableDictionary = [:]
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        do{
-            let x = try loadreminder()
-            print(x)
-            print("This didnn't work")
-        }catch{
-            print("ERRRRRRRRRR")
-            print(error)
-        }
+        getRemindersFromPlistToAppData()
         
+        print(appData)
+        /*let path = Bundle.main.path(forResource: "StorageLocation", ofType: "plist")!
+        let dict = NSDictionary(contentsOfFile: path)
+        
+        let rem = dict!.object(forKey: "ekdnl") as! [String]
+        
+        print(rem[0])*/
+    
     
         //sets bckground color of the view to black
         print("THIS WORKED XXXXXXXXXXXXXXX")
@@ -39,6 +41,22 @@ class TableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    //gets path of the plist
+    func getPath() -> String {
+        let plistFileName = "StorageLocation.plist"
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentPath = paths[0] as NSString
+        let plistPath = documentPath.appendingPathComponent(plistFileName)
+        return plistPath
+    }
+    
+    func getRemindersFromPlistToAppData() {
+        let path = self.getPath()
+        if FileManager.default.fileExists(atPath: path){
+            appData = NSMutableDictionary(contentsOfFile: path) ?? ["":[""]]
+        }
     }
 
     // MARK: - Table view data source
@@ -91,14 +109,20 @@ class TableViewController: UITableViewController {
         
         reminderInfo.updateValue(detailsArray, forKey: newReminder)
         
-        //sends the data to local storage
-        do{
-            //print("Tried to Save XXXXXXXXXXXXXXXXXXX")
-            try saveReminder(reminderInfo)
-        }catch {
-            print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-            print(error)
+    
+        let path = self.getPath()
+        print(path)
+        if FileManager.default.fileExists(atPath: path){
+            var data = NSMutableDictionary(contentsOfFile: path) ?? ["":[""]]
+            data.addEntries(from: reminderInfo)
+            data.write(toFile: path, atomically: true)
         }
+        
+        
+        
+        //appData = reminderInfo as! NSDictionary
+        //print(appData)
+        //writePropertyList(plistName: "Data")
         
         //Checks if the reminder is empty
         //if it is empty it will add to data
@@ -189,9 +213,9 @@ class TableViewController: UITableViewController {
     */
     
     //gets the url of the local storage
-    var plistURL: URL {
+    /*var plistURL: URL {
         let documentDirectoryURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-        //print(documentDirectoryURL.appendingPathComponent("StorageLocation.plist"))
+        print(documentDirectoryURL.appendingPathComponent("StorageLocation.plist"))
         return documentDirectoryURL.appendingPathComponent("StorageLocation.plist")
     }
     //saves the reminder on your phone for local storage
@@ -209,6 +233,9 @@ class TableViewController: UITableViewController {
             return [:]
         }
         return plist
-    }
-
+    }*/
+    //this works
+    
+    
+    
 }
