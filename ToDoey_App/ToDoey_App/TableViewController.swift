@@ -15,14 +15,41 @@ class TableViewController: UITableViewController {
     var newReminderDueDate: String = ""
     var selectedReminder: String = ""
     var reminderInfo: [String:[String]] = [:]
+    var appData:NSMutableDictionary = [:]
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //sets bckground color of the view to black
+    
+        
+        //gets the reminders from when you closed the app
+        //sets them to a NSDictionary called appData
+        getRemindersFromPlistToAppData()
         
         data = [String]()
         
+        reminderInfo = appData as! Dictionary<String,Array<String>>
+        //print("start of reminder info xxxxxxxxxxxxxxxx")
+        //print(reminderInfo)
+        for key in reminderInfo.keys{
+            //print(key)
+            data.append(key)
+        }
+        
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        
+        /*let path = Bundle.main.path(forResource: "StorageLocation", ofType: "plist")!
+        let dict = NSDictionary(contentsOfFile: path)
+        
+        let rem = dict!.object(forKey: "ekdnl") as! [String]
+        
+        print(rem[0])*/
+    
+        //sets bckground color of the view to black
+        //print("THIS WORKED XXXXXXXXXXXXXXX")
+        //data = [String]()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -30,7 +57,9 @@ class TableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-
+    
+    
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -46,7 +75,7 @@ class TableViewController: UITableViewController {
 
         cell.textLabel?.text = data[indexPath.row]
         //this sets the background color of eavh cell
-        cell.backgroundColor = UIColor.blue //find the light blue shade RGB values
+        //cell.backgroundColor = UIColor.blue //find the light blue shade RGB values
         //Makes the cells have rounded corners
         cell.layer.cornerRadius = 8
 
@@ -61,6 +90,7 @@ class TableViewController: UITableViewController {
         if editingStyle == .delete{
             data.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+        //add stuff here to delete stuff from plist
         }
     }
     
@@ -81,44 +111,58 @@ class TableViewController: UITableViewController {
         
         reminderInfo.updateValue(detailsArray, forKey: newReminder)
         
+        //sends the data to the plist
+        let path = self.getPath()
+        print(path)
+        if FileManager.default.fileExists(atPath: path){
+            var data = NSMutableDictionary(contentsOfFile: path) ?? ["":[""]]
+            data.addEntries(from: reminderInfo)
+            data.write(toFile: path, atomically: true)
+        }
+        
+        //appData = reminderInfo as! NSDictionary
+        //print(appData)
+        //writePropertyList(plistName: "Data")
+        
         //Checks if the reminder is empty
         //if it is not empty it will add to data
         if newReminder != ""{
             data.append(newReminder)
+            //print(data)
             tableView.reloadData()
+            
+            print(reminderInfo)
         }
     }
-
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let reminderInfoVC = ReminderInfoViewController(reminder: data[indexPath.row], dictionary: reminderInfo)
-
-        //print(indexPath.row)
-        self.selectedReminder = data[indexPath.row]
-        print(selectedReminder)
+    
+//    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+//        let reminderInfoVC = ReminderInfoViewController(reminderDetails: reminderInfo)
+//
+//        selectedReminder = data[indexPath.row]
 //
 //        //Initializes the data from the cell selected
-//        reminderInfoVC.reminder = selectedReminder
-
-        navigationController?.pushViewController(reminderInfoVC, animated: true)
-    }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        //Checks if segue used is going to ReminderInfoViewContoller
-//        if segue.identifier == "infoSegue"{
-//            let reminderInfoVC = segue.destination as! ReminderInfoViewController
+//        reminderInfoVC.title = selectedReminder
 //
-//            //Initializes the data from the cell selected
-////            reminderInfoVC.reminder = newReminder
-////            reminderInfoVC.reminderDetails = newReminderDetail
-////            reminderInfoVC.reminderDueDate = newReminderDueDate
-//            print(newReminder)
+//        self.navigationController?.pushViewController(reminderInfoVC, animated: true)
 //
-//            //if we get the name of the cell put that variable name in the place holder area
-////            reminderInfoVC.reminder = selectedReminder
-////            reminderInfoVC.reminderDetails = reminderInfo[selectedReminder]![0]
-////            reminderInfoVC.reminderDueDate = reminderInfo[selectedReminder]![1]
-//        }
 //    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //Checks if segue used is going to ReminderInfoViewContoller
+        if segue.identifier == "infoSegue"{
+            let reminderInfoVC = segue.destination as! ReminderInfoViewController
+
+            //Initializes the data from the cell selected
+            reminderInfoVC.reminder = newReminder
+            reminderInfoVC.reminderDetails = newReminderDetail
+            reminderInfoVC.reminderDueDate = newReminderDueDate
+            
+            // if we get the name of the cell put that variable name in the place holder area
+//            reminderInfoVC.reminder = (name of cell)
+//            reminderInfoVC.reminderDetails = reminderInfo[(name of cell)][0]
+//            reminderInfoVC.reminderDueDate = reminderInfo[(name of cell)][1]
+        }
+    }
     
     //Needed inorder for the cancel button in Reminder Detail View
     //to go to the TableView 
@@ -160,6 +204,24 @@ class TableViewController: UITableViewController {
         data.insert(itemToMove, at: destinationIndexPath.row)
         
     }
+    
+    //gets path of the plist
+    func getPath() -> String {
+        let plistFileName = "StorageLocation.plist"
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentPath = paths[0] as NSString
+        let plistPath = documentPath.appendingPathComponent(plistFileName)
+        return plistPath
+    }
+    
+    //gets the reminders from the plist
+    //sets it to appData
+    func getRemindersFromPlistToAppData() {
+        let path = self.getPath()
+        if FileManager.default.fileExists(atPath: path){
+            appData = NSMutableDictionary(contentsOfFile: path) ?? ["":[""]]
+        }
+    }
 
     /*
     // MARK: - Navigation
@@ -170,5 +232,31 @@ class TableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
+    //gets the url of the local storage
+    /*var plistURL: URL {
+        let documentDirectoryURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+        print(documentDirectoryURL.appendingPathComponent("StorageLocation.plist"))
+        return documentDirectoryURL.appendingPathComponent("StorageLocation.plist")
+    }
+    //saves the reminder on your phone for local storage
+    func saveReminder(_ plist: Any)throws{
+        let plistData = try PropertyListSerialization.data(fromPropertyList: plist, format: .xml, options: 0)
+        try plistData.write(to: plistURL)
+    }
+    //suppose to load the reminders from locals torage
+    func loadreminder() throws -> [String:String]
+    {
+        let data = try Data(contentsOf: plistURL)
+        //print(data)
+        //this isn't working
+        guard let plist = try PropertyListSerialization.propertyList(from: data, format: nil) as? [String:String] else {
+            return [:]
+        }
+        return plist
+    }*/
+    //this works
+    
+    
+    
 }
