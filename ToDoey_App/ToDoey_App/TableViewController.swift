@@ -22,6 +22,7 @@ class TableViewController: UITableViewController {
         //sets bckground color of the view to black
         
         data = [String]()
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -81,41 +82,43 @@ class TableViewController: UITableViewController {
         reminderInfo.updateValue(detailsArray, forKey: newReminder)
         
         //Checks if the reminder is empty
-        //if it is empty it will add to data
+        //if it is not empty it will add to data
         if newReminder != ""{
             data.append(newReminder)
             tableView.reloadData()
         }
     }
-    
-//    func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
-//        let reminderInfoVC = ReminderInfoViewController(reminderDetails: reminderInfo)
-//
-//        selectedReminder = data[indexPath.row]
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let reminderInfoVC = ReminderInfoViewController(reminder: data[indexPath.row], dictionary: reminderInfo)
+
+        //print(indexPath.row)
+        self.selectedReminder = data[indexPath.row]
+        print(selectedReminder)
 //
 //        //Initializes the data from the cell selected
-//        reminderInfoVC.title = selectedReminder
-//
-//        self.navigationController?.pushViewController(reminderInfoVC, animated: true)
-//
-//    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //Checks if segue used is going to ReminderInfoViewContoller
-        if segue.identifier == "infoSegue"{
-            let reminderInfoVC = segue.destination as! ReminderInfoViewController
+//        reminderInfoVC.reminder = selectedReminder
 
-            //Initializes the data from the cell selected
-            reminderInfoVC.reminder = newReminder
-            reminderInfoVC.reminderDetails = newReminderDetail
-            reminderInfoVC.reminderDueDate = newReminderDueDate
-            
-            // if we get the name of the cell put that variable name in the place holder area
-//            reminderInfoVC.reminder = (name of cell)
-//            reminderInfoVC.reminderDetails = reminderInfo[(name of cell)][0]
-//            reminderInfoVC.reminderDueDate = reminderInfo[(name of cell)][1]
-        }
+        navigationController?.pushViewController(reminderInfoVC, animated: true)
     }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        //Checks if segue used is going to ReminderInfoViewContoller
+//        if segue.identifier == "infoSegue"{
+//            let reminderInfoVC = segue.destination as! ReminderInfoViewController
+//
+//            //Initializes the data from the cell selected
+////            reminderInfoVC.reminder = newReminder
+////            reminderInfoVC.reminderDetails = newReminderDetail
+////            reminderInfoVC.reminderDueDate = newReminderDueDate
+//            print(newReminder)
+//
+//            //if we get the name of the cell put that variable name in the place holder area
+////            reminderInfoVC.reminder = selectedReminder
+////            reminderInfoVC.reminderDetails = reminderInfo[selectedReminder]![0]
+////            reminderInfoVC.reminderDueDate = reminderInfo[selectedReminder]![1]
+//        }
+//    }
     
     //Needed inorder for the cancel button in Reminder Detail View
     //to go to the TableView 

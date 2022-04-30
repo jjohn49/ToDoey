@@ -24,9 +24,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="428" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="QxB-Dt-GQi" kind="show" identifier="infoSegue" id="OJn-zP-xKy"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -42,7 +39,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="+" id="ktC-k2-glX">
                             <connections>
-                                <segue destination="iMH-gT-IoI" kind="presentation" id="DDX-XX-deI"/>
+                                <segue destination="iMH-gT-IoI" kind="presentation" identifier="addSegue" id="DDX-XX-deI"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -60,28 +57,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="aj6-gY-561">
-                                <rect key="frame" x="20" y="88" width="388" height="804"/>
+                                <rect key="frame" x="20" y="44" width="388" height="848"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WZK-0d-qPB">
-                                        <rect key="frame" x="0.0" y="0.0" width="388" height="193.66666666666666"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="388" height="204.66666666666666"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sZf-OQ-R8C">
-                                        <rect key="frame" x="0.0" y="203.66666666666669" width="388" height="193.33333333333331"/>
+                                        <rect key="frame" x="0.0" y="214.66666666666669" width="388" height="204.33333333333331"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6OE-vc-fEi">
-                                        <rect key="frame" x="0.0" y="407" width="388" height="193.66666666666663"/>
+                                        <rect key="frame" x="0.0" y="429.00000000000006" width="388" height="204.66666666666669"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQ0-l5-BpC">
-                                        <rect key="frame" x="0.0" y="610.66666666666663" width="388" height="193.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="643.66666666666663" width="388" height="204.33333333333337"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -102,9 +99,10 @@
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="Qto-7o-ZBU"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="reminderDate" destination="WZK-0d-qPB" id="tLI-GA-jZ8"/>
+                        <outlet property="remidnerInfo" destination="sZf-OQ-R8C" id="acc-RZ-tkN"/>
+                        <outlet property="reminderDate" destination="WZK-0d-qPB" id="6oe-h2-NpA"/>
                         <outlet property="reminderInfo" destination="sZf-OQ-R8C" id="DbF-e9-bJc"/>
-                        <outlet property="reminderTitle" destination="zQD-25-ONu" id="QZF-TD-Xqt"/>
+                        <outlet property="reminderTitle" destination="zQD-25-ONu" id="FfE-mS-IJw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gAX-O1-YAh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
