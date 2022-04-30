@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E2DA57E281CDA5D00D999FE /* StorageLocation.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E2DA57D281CDA5D00D999FE /* StorageLocation.plist */; };
 		1EF12F1B281617E6003FCD7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF12F1A281617E6003FCD7E /* AppDelegate.swift */; };
 		1EF12F1D281617E6003FCD7E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF12F1C281617E6003FCD7E /* SceneDelegate.swift */; };
 		1EF12F22281617E6003FCD7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1EF12F20281617E6003FCD7E /* Main.storyboard */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E2DA57D281CDA5D00D999FE /* StorageLocation.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = StorageLocation.plist; sourceTree = "<group>"; };
 		1EF12F17281617E6003FCD7E /* ToDoey_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoey_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EF12F1A281617E6003FCD7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1EF12F1C281617E6003FCD7E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				1EF12F20281617E6003FCD7E /* Main.storyboard */,
 				7A3527992819BC11008D7F5B /* ReminderInfoViewController.swift */,
 				1EF12F23281617E7003FCD7E /* Assets.xcassets */,
+				1E2DA57D281CDA5D00D999FE /* StorageLocation.plist */,
 				1EF12F25281617E7003FCD7E /* LaunchScreen.storyboard */,
 				1EF12F28281617E7003FCD7E /* Info.plist */,
 			);
@@ -238,6 +241,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EF12F27281617E7003FCD7E /* LaunchScreen.storyboard in Resources */,
+				1E2DA57E281CDA5D00D999FE /* StorageLocation.plist in Resources */,
 				1EF12F24281617E7003FCD7E /* Assets.xcassets in Resources */,
 				1EF12F22281617E6003FCD7E /* Main.storyboard in Resources */,
 			);

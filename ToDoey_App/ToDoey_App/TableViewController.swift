@@ -19,8 +19,19 @@ class TableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //sets bckground color of the view to black
         
+        do{
+            let x = try loadreminder()
+            print(x)
+            print("This didnn't work")
+        }catch{
+            print("ERRRRRRRRRR")
+            print(error)
+        }
+        
+    
+        //sets bckground color of the view to black
+        print("THIS WORKED XXXXXXXXXXXXXXX")
         data = [String]()
 
         // Uncomment the following line to preserve selection between presentations
@@ -79,6 +90,15 @@ class TableViewController: UITableViewController {
         detailsArray.append(newReminderDueDate)
         
         reminderInfo.updateValue(detailsArray, forKey: newReminder)
+        
+        //sends the data to local storage
+        do{
+            //print("Tried to Save XXXXXXXXXXXXXXXXXXX")
+            try saveReminder(reminderInfo)
+        }catch {
+            print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
+            print(error)
+        }
         
         //Checks if the reminder is empty
         //if it is empty it will add to data
@@ -167,5 +187,28 @@ class TableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    //gets the url of the local storage
+    var plistURL: URL {
+        let documentDirectoryURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+        //print(documentDirectoryURL.appendingPathComponent("StorageLocation.plist"))
+        return documentDirectoryURL.appendingPathComponent("StorageLocation.plist")
+    }
+    //saves the reminder on your phone for local storage
+    func saveReminder(_ plist: Any)throws{
+        let plistData = try PropertyListSerialization.data(fromPropertyList: plist, format: .xml, options: 0)
+        try plistData.write(to: plistURL)
+    }
+    //suppose to load the reminders from locals torage
+    func loadreminder() throws -> [String:String]
+    {
+        let data = try Data(contentsOf: plistURL)
+        //print(data)
+        //this isn't working
+        guard let plist = try PropertyListSerialization.propertyList(from: data, format: nil) as? [String:String] else {
+            return [:]
+        }
+        return plist
+    }
 
 }
