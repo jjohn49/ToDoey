@@ -21,7 +21,7 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        
+        createPlist()
         //gets the reminders from when you closed the app
         //sets them to a NSDictionary called appData
         getRemindersFromPlistToAppData()
@@ -58,6 +58,24 @@ class TableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
+    //creates the plist in the documents folder
+    func createPlist(){
+        let filem = FileManager.default
+        let docDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+        let p = docDir.appending("/StorageLocation.plist")
+        
+        if(!filem.fileExists(atPath: p)){
+            let success:Bool = appData.write(toFile: p, atomically: true)
+            if success{
+                print("File Created")
+            }else{
+                print("File not created")
+            }
+        }else{
+            print("File Exists")
+        }
+    }
+    
     
     
     // MARK: - Table view data source
@@ -88,9 +106,20 @@ class TableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete{
+            let del = data[indexPath.row]
+            //print(del)
             data.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-        //add stuff here to delete stuff from plist
+            deleteFromPlist(key: del)
+        }
+    }
+    
+    func deleteFromPlist(key:String){
+        let path = getPath()
+        if FileManager.default.fileExists(atPath: path){
+            let data = NSMutableDictionary(contentsOfFile: path) ?? ["":[""]]
+            data.removeObject(forKey: key)
+            data.write(toFile: path, atomically: true)
         }
     }
     
