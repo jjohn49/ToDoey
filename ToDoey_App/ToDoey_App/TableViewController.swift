@@ -21,7 +21,7 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        
+        createPlist()
         //gets the reminders from when you closed the app
         //sets them to a NSDictionary called appData
         getRemindersFromPlistToAppData()
@@ -56,6 +56,23 @@ class TableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+    }
+    
+    func createPlist(){
+        let filem = FileManager.default
+        let docDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+        let p = docDir.appending("/StorageLocation.plist")
+        
+        if(!filem.fileExists(atPath: p)){
+            let success:Bool = appData.write(toFile: p, atomically: true)
+            if success{
+                print("File Created")
+            }else{
+                print("File not created")
+            }
+        }else{
+            print("File Exists")
+        }
     }
     
     
