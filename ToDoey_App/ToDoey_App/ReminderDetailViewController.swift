@@ -22,7 +22,7 @@ class ReminderDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        hideKeyboard()
     }
     
     @IBAction func cancel(segue:UIStoryboardSegue) {
@@ -31,6 +31,19 @@ class ReminderDetailViewController: UIViewController {
 
     @IBAction func done(segue:UIStoryboardSegue) {
          
+    }
+    
+    //sets up the function below
+    func hideKeyboard(){
+        self.view.addGestureRecognizer(self.gestureToHidkeKeyboard())
+        self.navigationController?.navigationBar.addGestureRecognizer(self.gestureToHidkeKeyboard())
+    }
+    
+    //create a gesture so when you tap off the UITextField the keyboard goes away
+    private func gestureToHidkeKeyboard() -> UIGestureRecognizer{
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(self.view.endEditing(_:)))
+                tap.cancelsTouchesInView = false
+                return tap
     }
     
     
@@ -57,10 +70,10 @@ class ReminderDetailViewController: UIViewController {
         dueDateFormat.timeStyle = DateFormatter.Style.short
         
         reminderDueDate = dueDateFormat.string(from: dueDate.date)
-        
+        //print("Reminder due date is " + reminderDueDate)
         
         //this sets the text of the label
-        dateLabel.text = reminderDueDate
+        //dateLabel.text=reminderDueDate
     }
     
     //this is a test label ablove to show that the Date Picker properly works
