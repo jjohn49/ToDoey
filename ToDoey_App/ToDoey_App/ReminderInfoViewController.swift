@@ -9,9 +9,9 @@ import UIKit
 
 class ReminderInfoViewController: UIViewController {
 
-    @IBOutlet weak var reminderTitle: UINavigationItem!
-    @IBOutlet weak var reminderInfo: UILabel!
+    @IBOutlet weak var reminderInfo: UITextView!
     @IBOutlet weak var reminderDate: UILabel!
+    @IBOutlet weak var reminderTitle: UINavigationItem!
     var reminder = ""
     var reminderDetails = ""
     var reminderDueDate = ""

@@ -13,7 +13,7 @@ class ReminderDetailViewController: UIViewController {
     //reminder title
     var reminder: String = ""
     
-    @IBOutlet weak var reminderDetailBox: UITextView!
+    @IBOutlet weak var reminderDetailBox: UITextField!
     //reminder details
     var reminderDetail: String = ""
     
@@ -22,10 +22,7 @@ class ReminderDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let borderColor : UIColor = UIColor(red: 0.85, green: 0.85, blue: 0.85, alpha: 1.0)
-        reminderDetailBox.layer.borderWidth = 0.5
-        reminderDetailBox.layer.borderColor = borderColor.cgColor
-        reminderDetailBox.layer.cornerRadius = 5.0
+        
     }
     
     @IBAction func cancel(segue:UIStoryboardSegue) {

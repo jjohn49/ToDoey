@@ -63,26 +63,28 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="aj6-gY-561">
                                 <rect key="frame" x="20" y="88" width="388" height="804"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6OE-vc-fEi">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="250" text="Description: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6OE-vc-fEi">
                                         <rect key="frame" x="0.0" y="0.0" width="388" height="193.66666666666666"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sZf-OQ-R8C">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="P64-ee-gtq">
                                         <rect key="frame" x="0.0" y="203.66666666666669" width="388" height="193.33333333333331"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do on:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQ0-l5-BpC">
+                                        <color key="backgroundColor" red="0.78412245800000002" green="0.90161823829999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Due Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQ0-l5-BpC">
                                         <rect key="frame" x="0.0" y="407" width="388" height="193.66666666666663"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WZK-0d-qPB">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WZK-0d-qPB">
                                         <rect key="frame" x="0.0" y="610.66666666666663" width="388" height="193.33333333333337"/>
+                                        <color key="backgroundColor" red="0.78412245800000002" green="0.90161823829999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -99,12 +101,10 @@
                             <constraint firstItem="Nz7-34-5pX" firstAttribute="bottom" secondItem="aj6-gY-561" secondAttribute="bottom" id="wDi-2W-VOW"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="zQD-25-ONu">
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="Qto-7o-ZBU"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Title" id="zQD-25-ONu"/>
                     <connections>
-                        <outlet property="reminderDate" destination="WZK-0d-qPB" id="tLI-GA-jZ8"/>
-                        <outlet property="reminderInfo" destination="sZf-OQ-R8C" id="DbF-e9-bJc"/>
+                        <outlet property="reminderDate" destination="WZK-0d-qPB" id="d30-0d-x2g"/>
+                        <outlet property="reminderInfo" destination="P64-ee-gtq" id="BZS-aT-kY6"/>
                         <outlet property="reminderTitle" destination="zQD-25-ONu" id="QZF-TD-Xqt"/>
                     </connections>
                 </viewController>
@@ -143,43 +143,30 @@
                                             </navigationItem>
                                         </items>
                                     </navigationBar>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Task Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1M5-FF-oIJ">
+                                        <rect key="frame" x="0.0" y="117" width="428" height="50"/>
+                                        <color key="backgroundColor" red="0.78412245800000002" green="0.90161823829999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="BYk-Zg-1ZH"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="RRJ-j9-1gQ">
+                                        <rect key="frame" x="0.0" y="240" width="428" height="299"/>
+                                        <color key="backgroundColor" red="0.78412245800000002" green="0.90161823829999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="59" translatesAutoresizingMaskIntoConstraints="NO" id="jFq-Vb-vJ9">
-                                        <rect key="frame" x="0.0" y="117" width="428" height="711"/>
+                                        <rect key="frame" x="0.0" y="612" width="428" height="216"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Task Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iyR-Jr-zG8" userLabel="Task Title">
-                                                <rect key="frame" x="0.0" y="0.0" width="428" height="20.333333333333332"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1M5-FF-oIJ">
-                                                <rect key="frame" x="0.0" y="79.333333333333343" width="428" height="58"/>
-                                                <color key="backgroundColor" red="0.78412245800000002" green="0.90161823829999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8iC-3Q-VAd">
-                                                <rect key="frame" x="0.0" y="196.33333333333331" width="428" height="20.333333333333343"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YXi-nt-207">
-                                                <rect key="frame" x="0.0" y="275.66666666666669" width="428" height="81"/>
-                                                <color key="backgroundColor" red="0.78412245800000002" green="0.90161823829999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <color key="textColor" systemColor="labelColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IYt-gr-qAT" userLabel="Date Picker Test Label (Remove later)">
-                                                <rect key="frame" x="0.0" y="415.66666666666663" width="428" height="20.333333333333314"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <datePicker contentMode="scaleToFill" restorationIdentifier="dueDate" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="fEU-U1-t4F">
-                                                <rect key="frame" x="0.0" y="495" width="428" height="216"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="428" height="216"/>
                                                 <color key="backgroundColor" red="0.78412245800000002" green="0.90161823829999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="216" id="D4s-h6-t37"/>
+                                                </constraints>
                                                 <connections>
                                                     <action selector="dueDateChanger:" destination="iMH-gT-IoI" eventType="valueChanged" id="5U2-kp-lLR"/>
                                                 </connections>
@@ -200,9 +187,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="YZd-CN-klV"/>
                     <connections>
-                        <outlet property="dateLabel" destination="IYt-gr-qAT" id="kCB-KQ-wsi"/>
                         <outlet property="dueDate" destination="fEU-U1-t4F" id="nwf-jf-Awj"/>
-                        <outlet property="reminderDetailBox" destination="YXi-nt-207" id="Tus-NZ-Jqw"/>
+                        <outlet property="reminderDetailBox" destination="RRJ-j9-1gQ" id="Mwu-TZ-Qs9"/>
                         <outlet property="reminderDetails" destination="1M5-FF-oIJ" id="zYl-xP-fUC"/>
                     </connections>
                 </viewController>
