@@ -138,16 +138,7 @@ class TableViewController: UITableViewController {
         //adds the due date to the value array
         detailsArray.append(newReminderDueDate)
         
-        reminderInfo.updateValue(detailsArray, forKey: newReminder)
         
-        //sends the data to the plist
-        let path = self.getPath()
-        print(path)
-        if FileManager.default.fileExists(atPath: path){
-            let data = NSMutableDictionary(contentsOfFile: path) ?? ["":[""]]
-            data.addEntries(from: reminderInfo)
-            data.write(toFile: path, atomically: true)
-        }
         
         //appData = reminderInfo as! NSDictionary
         //print(appData)
@@ -160,6 +151,18 @@ class TableViewController: UITableViewController {
             //print(data)
             tableView.reloadData()
             print(reminderInfo)
+            
+            reminderInfo.updateValue(detailsArray, forKey: newReminder)
+            
+            //sends the data to the plist
+            let path = self.getPath()
+            print(path)
+            if FileManager.default.fileExists(atPath: path){
+                let data = NSMutableDictionary(contentsOfFile: path) ?? ["":[""]]
+                data.addEntries(from: reminderInfo)
+                print(reminderInfo)
+                data.write(toFile: path, atomically: true)
+            }
         }
     }
     

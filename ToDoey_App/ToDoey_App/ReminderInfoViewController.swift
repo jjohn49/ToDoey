@@ -34,11 +34,22 @@ class ReminderInfoViewController: UIViewController {
 //        reminderTitle.title = reminder
         reminderInfo.text = reminderDetails
         reminderDate.text = reminderDueDate
+        
+        hideKeyboard()
     }
     
-   
+    func hideKeyboard(){
+        self.view.addGestureRecognizer(self.gestureToHidkeKeyboard())
+        self.navigationController?.navigationBar.addGestureRecognizer(self.gestureToHidkeKeyboard())
+        
+    }
     
-    
+    //create a gesture so when you tap off the UITextField the keyboard goes away
+    private func gestureToHidkeKeyboard() -> UIGestureRecognizer{
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(self.view.endEditing(_:)))
+                tap.cancelsTouchesInView = false
+                return tap
+    }
     // Do any additional setup after loading the view.
 }
     
