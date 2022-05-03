@@ -48,6 +48,8 @@ class TableViewController: UITableViewController {
             self.tableView.reloadData()
         }
         
+        
+        
         /*let path = Bundle.main.path(forResource: "StorageLocation", ofType: "plist")!
         let dict = NSDictionary(contentsOfFile: path)
         
@@ -150,27 +152,40 @@ class TableViewController: UITableViewController {
         format.timeStyle = DateFormatter.Style.short
         print(dueDate)
         let d2 = format.date(from: dueDate)
+        let now = format.date(from: format.string(from: Date()))!
         print(d2)
-        let diffsecs = d2!.timeIntervalSinceNow
+        print(now)
+        let diffsecs = d2!.timeIntervalSince(now)
+        
+        print(diffsecs)
         
         return secsToTime(diff: diffsecs)
     }
     
     func secsToTime(diff: TimeInterval) -> String{
-        var diffMut = diff
-        let seconds = diff.truncatingRemainder(dividingBy: 60)
-        diffMut -= seconds
-        diffMut/=60
+        var x = diff
         
-        let minutes = diff.truncatingRemainder(dividingBy: 60)
-        diffMut -= minutes
-        diffMut/=60
-        let hours = diff.truncatingRemainder(dividingBy: 24)
-        diffMut -= hours
-        diffMut/=24
+        x /= 60
         
         
-        return "D: " + String(Int(diffMut)) + " H: " + String(Int(hours)) + " M " + String(Int(minutes))
+        
+        let mins = String(Int(x.truncatingRemainder(dividingBy: 60)))
+        x /= 60
+        
+        print("mins is " + mins)
+        
+        let hours = String(Int(x.truncatingRemainder(dividingBy: 24)))
+        x /= 60
+        
+        print("hours is " + hours)
+        
+        let days = String(Int(x))
+        
+        print("Days is " + days)
+        
+        return "D:" + days + " H:" + hours + " M:" + mins + " LEFT TILL DUE"
+        
+        
         
     }
     
