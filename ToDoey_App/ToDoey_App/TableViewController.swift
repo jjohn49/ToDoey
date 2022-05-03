@@ -7,6 +7,14 @@
 
 import UIKit
 
+class CustomTableViewCell: UITableViewCell{
+    
+    @IBOutlet weak var cellTitle: UILabel!
+    @IBOutlet weak var cellDueDate: UILabel!
+    @IBOutlet weak var cellDaysLeft: UILabel!
+    @IBOutlet weak var cellBar: UIProgressView!
+}
+
 class TableViewController: UITableViewController {
     
     var data = [String]()
@@ -78,6 +86,7 @@ class TableViewController: UITableViewController {
     
     
     
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -87,18 +96,30 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }
-
+    
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reminderCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reminderCell", for: indexPath) as! CustomTableViewCell
+        
 
-        cell.textLabel?.text = data[indexPath.row]
+        cell.cellTitle.text = data[indexPath.row]
+        if reminderInfo[cell.cellTitle.text!]![1] != ""{
+            cell.cellDueDate.text = "Due on: " + reminderInfo[cell.cellTitle.text!]![1]
+            cell.cellDaysLeft.text = getDateDifference(dueDate: reminderInfo[cell.cellTitle.text!]![1])
+        }else{
+            cell.cellDueDate.text = "NO DUE DATE"
+            cell.cellDaysLeft.text = "-----------"
+        }
+       
         //this sets the background color of eavh cell
         //cell.backgroundColor = UIColor.blue //find the light blue shade RGB values
         //Makes the cells have rounded corners
-        cell.layer.cornerRadius = 8
+        cell.layer.cornerRadius = 20
 
         return cell
     }
+    
+    
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
@@ -123,6 +144,36 @@ class TableViewController: UITableViewController {
         }
     }
     
+    func getDateDifference(dueDate:String) -> String{
+        let format = DateFormatter()
+        format.dateStyle = DateFormatter.Style.short
+        format.timeStyle = DateFormatter.Style.short
+        print(dueDate)
+        let d2 = format.date(from: dueDate)
+        print(d2)
+        let diffsecs = d2!.timeIntervalSinceNow
+        
+        return secsToTime(diff: diffsecs)
+    }
+    
+    func secsToTime(diff: TimeInterval) -> String{
+        var diffMut = diff
+        let seconds = diff.truncatingRemainder(dividingBy: 60)
+        diffMut -= seconds
+        diffMut/=60
+        
+        let minutes = diff.truncatingRemainder(dividingBy: 60)
+        diffMut -= minutes
+        diffMut/=60
+        let hours = diff.truncatingRemainder(dividingBy: 24)
+        diffMut -= hours
+        diffMut/=24
+        
+        
+        return "D: " + String(Int(diffMut)) + " H: " + String(Int(hours)) + " M " + String(Int(minutes))
+        
+    }
+    
     @IBAction func done(segue:UIStoryboardSegue) {
         let reminderDetailVC = segue.source as! ReminderDetailViewController
         //gets the reminder title
@@ -131,12 +182,16 @@ class TableViewController: UITableViewController {
         newReminderDetail = reminderDetailVC.reminderDetail
         //gets the due date for the reminder
         newReminderDueDate = reminderDetailVC.reminderDueDate
+        
+        
         //creates a String array to act as the value in reminder info
-        var detailsArray: [String] = []
+        var detailsArray:[String] = []
         // adds the details to the value array
         detailsArray.append(newReminderDetail)
         //adds the due date to the value array
         detailsArray.append(newReminderDueDate)
+        
+        
         
         
         
@@ -188,12 +243,12 @@ class TableViewController: UITableViewController {
         //Checks if segue used is going to ReminderInfoViewContoller
         if segue.identifier == "getCellInfo"{
             let reminderInfoVC = segue.destination as! ReminderInfoViewController
-            let cell = sender as! UITableViewCell
+            let cell = sender as! CustomTableViewCell
             
-            let name: String = (cell.textLabel?.text)! as String
+            let name: String = (cell.cellTitle?.text)! as String
             //Initializes the data from the cell selected
             reminderInfoVC.reminderTitle.title = name
-            print((cell.textLabel?.text)! as String)
+            print((cell.cellTitle.text)! as String)
             reminderInfoVC.reminderDetails = (reminderInfo[name]?[0])!
             reminderInfoVC.reminderDueDate = (reminderInfo[name]?[1])!
             

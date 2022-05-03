@@ -17,16 +17,74 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reminderCell" id="r6d-0o-Os5">
-                                <rect key="frame" x="0.0" y="44.666666030883789" width="428" height="43.666667938232422"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="reminderCell" rowHeight="181" id="r6d-0o-Os5" customClass="CustomTableViewCell" customModule="ToDoey_App" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44.666666030883789" width="428" height="181"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="r6d-0o-Os5" id="wZX-xa-v3v">
-                                    <rect key="frame" x="0.0" y="0.0" width="428" height="43.666667938232422"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="r6d-0o-Os5" id="wZX-xa-v3v" customClass="TableViewCell" customModule="ToDoey_App" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="428" height="181"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="vta-vt-Pb5">
+                                            <rect key="frame" x="20" y="0.0" width="388" height="181"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="doB-Z1-n1K">
+                                                    <rect key="frame" x="0.0" y="0.0" width="388" height="30.333333333333332"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ial-pg-64C">
+                                                    <rect key="frame" x="0.0" y="30.333333333333329" width="388" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESW-r2-MIz">
+                                                    <rect key="frame" x="0.0" y="60.333333333333336" width="388" height="30.333333333333336"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oS7-rx-D7D">
+                                                    <rect key="frame" x="0.0" y="90.666666666666671" width="388" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="WA3-ZA-vyo">
+                                                    <rect key="frame" x="0.0" y="120.66666666666667" width="388" height="30.333333333333329"/>
+                                                </progressView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zql-zz-Xz1">
+                                                    <rect key="frame" x="0.0" y="151" width="388" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="WA3-ZA-vyo" firstAttribute="top" secondItem="oS7-rx-D7D" secondAttribute="bottom" id="5eJ-fm-JY8"/>
+                                                <constraint firstItem="ESW-r2-MIz" firstAttribute="top" secondItem="Ial-pg-64C" secondAttribute="bottom" id="Lvn-rc-nWt"/>
+                                                <constraint firstItem="oS7-rx-D7D" firstAttribute="top" secondItem="ESW-r2-MIz" secondAttribute="bottom" id="OpT-Jp-3sn"/>
+                                            </constraints>
+                                        </stackView>
+                                    </subviews>
                                     <color key="backgroundColor" red="0.78412245800000002" green="0.90161823829999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <constraints>
+                                        <constraint firstItem="vta-vt-Pb5" firstAttribute="leading" secondItem="wZX-xa-v3v" secondAttribute="leading" constant="20" symbolic="YES" id="HS7-h7-bsY"/>
+                                        <constraint firstItem="vta-vt-Pb5" firstAttribute="top" secondItem="wZX-xa-v3v" secondAttribute="top" id="Z6F-T4-hnG"/>
+                                        <constraint firstAttribute="trailing" secondItem="vta-vt-Pb5" secondAttribute="trailing" constant="20" symbolic="YES" id="f2V-PT-hkb"/>
+                                        <constraint firstAttribute="bottom" secondItem="vta-vt-Pb5" secondAttribute="bottom" id="w5e-FH-CKu"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="cellBar" destination="WA3-ZA-vyo" id="qxr-kK-JC5"/>
+                                    <outlet property="cellDaysLeft" destination="oS7-rx-D7D" id="oxK-mX-ccS"/>
+                                    <outlet property="cellDueDate" destination="ESW-r2-MIz" id="AKz-u5-QBt"/>
+                                    <outlet property="cellTitle" destination="Ial-pg-64C" id="wYU-tN-js3"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
+                        <sections/>
                         <connections>
                             <outlet property="dataSource" destination="HfZ-aQ-hFQ" id="I99-1C-T7t"/>
                             <outlet property="delegate" destination="HfZ-aQ-hFQ" id="fXG-9v-VEj"/>
@@ -50,7 +108,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bo8-zE-CWy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-872" y="47"/>
+            <point key="canvasLocation" x="-873.36448598130835" y="46.652267818574515"/>
         </scene>
         <!--Reminder Info View Controller-->
         <scene sceneID="TAQ-iY-peU">

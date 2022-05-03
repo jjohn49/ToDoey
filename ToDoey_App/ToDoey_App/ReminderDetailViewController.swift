@@ -63,6 +63,8 @@ class ReminderDetailViewController: UIViewController {
     //this sets the format of the date picker and makes the info to the string
     //Need to send the string to TableView
     //Need to make it centered
+    
+  
     @IBAction func dueDateChanger(_ sender: Any) {
         let dueDateFormat = DateFormatter()
         
@@ -70,6 +72,7 @@ class ReminderDetailViewController: UIViewController {
         dueDateFormat.timeStyle = DateFormatter.Style.short
         
         reminderDueDate = dueDateFormat.string(from: dueDate.date)
+       
         //print("Reminder due date is " + reminderDueDate)
         
         //this sets the text of the label
