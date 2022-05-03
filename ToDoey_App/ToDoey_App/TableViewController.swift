@@ -39,14 +39,20 @@ class TableViewController: UITableViewController {
         
         reminderInfo = appData as! Dictionary<String,Array<String>>
         //print("start of reminder info xxxxxxxxxxxxxxxx")
-        //print(reminderInfo)
+        print(reminderInfo)
         
-        for key in reminderInfo.keys{
-            //print(key)
-            data.append(key)
+        //getRemindersInOrderOfDueDate()
+        
+        
+        /*for x in reminderInfo.keys{
+            data.append(x)
+        }*/
+        if reminderInfo.keys.count > 0{
+            getOrderOfReminder()
         }
         
         DispatchQueue.main.async {
+            //self.getOrderOfReminder()
             self.tableView.reloadData()
         }
         
@@ -164,6 +170,30 @@ class TableViewController: UITableViewController {
         }
     }
     
+    //This is for calculating what should be higher on the list
+    func getDateDifference(dueDate:String) -> TimeInterval{
+        let format = DateFormatter()
+        format.dateStyle = DateFormatter.Style.short
+        format.timeStyle = DateFormatter.Style.short
+        //print(dueDate)
+        
+        let d2 = format.date(from: dueDate)
+        let now = format.date(from: format.string(from: Date()))!
+        //print(d2)
+        print(now)
+        
+        if d2 == nil {
+            return TimeInterval.infinity
+        }
+        
+        let diffsecs = d2!.timeIntervalSince(now)
+        
+        //print(diffsecs)
+        return diffsecs
+    }
+    
+    //This is for calculating the difference between now and when
+    //The reminder is due
     func getDateDifference(dueDate:String) -> String{
         let format = DateFormatter()
         format.dateStyle = DateFormatter.Style.short
@@ -193,7 +223,7 @@ class TableViewController: UITableViewController {
         //print("mins is " + mins)
         
         let hours = String(Int(x.truncatingRemainder(dividingBy: 24)))
-        x /= 60
+        x /= 24
         
         //print("hours is " + hours)
         
@@ -253,6 +283,8 @@ class TableViewController: UITableViewController {
                 print(reminderInfo)
                 data.write(toFile: path, atomically: true)
             }
+            
+            //getRemindersInOrderOfDueDate()
         }
     }
     
@@ -347,6 +379,68 @@ class TableViewController: UITableViewController {
         let path = self.getPath()
         if FileManager.default.fileExists(atPath: path){
             appData = NSMutableDictionary(contentsOfFile: path) ?? ["":[""]]
+        }
+    }
+    
+    
+    //gets the reminders in order of how soon they are due
+    //anything without a due date is randomly put at the bottom
+    func getOrderOfReminder(){
+        var temp = Array(reminderInfo.keys)
+        
+        var removed : [String] = []
+        
+        for x in temp where temp.count>1{
+            //print("X is changing to " + x)
+            //print(temp)
+            var xDueDate: String = ""
+            var earliest : String = ""
+            if let xArr = reminderInfo[x]{
+                xDueDate = xArr[1]
+                earliest = x
+            }
+            if xDueDate == ""{
+                removed.append(x)
+                //print("Apended " + x + " to removed")
+                if let index = temp.firstIndex(of: x){
+                    temp.remove(at: index)
+                }
+                continue
+            }
+            for y in temp where y != x{
+                //print(temp)
+                //print("X is " + x)
+                //print("Y is " + y)
+                var yDueDate: String = ""
+                if let yArr = reminderInfo[y]{
+                    yDueDate = yArr[1]
+                }
+                if yDueDate == ""{
+                    removed.append(y)
+                    //print("Apended " + y + " to removed")
+                    if let index = temp.firstIndex(of: y){
+                        temp.remove(at: index)
+                    }
+                    continue
+                }
+                
+                if getDateDifference(dueDate: yDueDate).isLess(than: getDateDifference(dueDate: xDueDate)){
+                    //print("Earliest is changing from " + earliest + " To " + y)
+                    earliest = y
+                }
+            }
+            data.append(earliest)
+            //print("Apended " + earliest + " to data")
+            if let index = temp.firstIndex(of: earliest){
+                temp.remove(at: index)
+            }
+        }
+        let last = temp.removeFirst()
+        
+        data.append(last)
+        
+        for x in removed{
+            data.append(x)
         }
     }
 
