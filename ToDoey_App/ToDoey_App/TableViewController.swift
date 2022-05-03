@@ -24,6 +24,7 @@ class TableViewController: UITableViewController {
     var selectedReminder: String = ""
     var reminderInfo: [String:[String]] = [:]
     var appData:NSMutableDictionary = [:]
+    var indexOfCell: String = ""
 
 
     override func viewDidLoad() {
@@ -39,12 +40,18 @@ class TableViewController: UITableViewController {
         reminderInfo = appData as! Dictionary<String,Array<String>>
         //print("start of reminder info xxxxxxxxxxxxxxxx")
         //print(reminderInfo)
+        
         for key in reminderInfo.keys{
             //print(key)
             data.append(key)
         }
         
         DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        
+        //changes the timer for each cell after every minute
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+60.0){
             self.tableView.reloadData()
         }
         
@@ -90,7 +97,8 @@ class TableViewController: UITableViewController {
     
     
     // MARK: - Table view data source
-
+    
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -103,11 +111,21 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reminderCell", for: indexPath) as! CustomTableViewCell
         
+        //et cellRow = indexPath.row
+        
 
         cell.cellTitle.text = data[indexPath.row]
         if reminderInfo[cell.cellTitle.text!]![1] != ""{
             cell.cellDueDate.text = "Due on: " + reminderInfo[cell.cellTitle.text!]![1]
             cell.cellDaysLeft.text = getDateDifference(dueDate: reminderInfo[cell.cellTitle.text!]![1])
+            
+            if reminderInfo[cell.cellTitle.text!]?.count==3{
+                reminderInfo[cell.cellTitle.text!]![2] = String(indexPath.row)
+            }else{
+                reminderInfo[cell.cellTitle.text!]?.append(String(indexPath.row))
+                            print(reminderInfo)
+            }
+            
         }else{
             cell.cellDueDate.text = "NO DUE DATE"
             cell.cellDaysLeft.text = "-----------"
@@ -150,14 +168,14 @@ class TableViewController: UITableViewController {
         let format = DateFormatter()
         format.dateStyle = DateFormatter.Style.short
         format.timeStyle = DateFormatter.Style.short
-        print(dueDate)
+        //print(dueDate)
         let d2 = format.date(from: dueDate)
         let now = format.date(from: format.string(from: Date()))!
-        print(d2)
-        print(now)
+        //print(d2)
+        //print(now)
         let diffsecs = d2!.timeIntervalSince(now)
         
-        print(diffsecs)
+        //print(diffsecs)
         
         return secsToTime(diff: diffsecs)
     }
@@ -172,16 +190,16 @@ class TableViewController: UITableViewController {
         let mins = String(Int(x.truncatingRemainder(dividingBy: 60)))
         x /= 60
         
-        print("mins is " + mins)
+        //print("mins is " + mins)
         
         let hours = String(Int(x.truncatingRemainder(dividingBy: 24)))
         x /= 60
         
-        print("hours is " + hours)
+        //print("hours is " + hours)
         
         let days = String(Int(x))
         
-        print("Days is " + days)
+        //print("Days is " + days)
         
         return "D:" + days + " H:" + hours + " M:" + mins + " LEFT TILL DUE"
         
@@ -197,6 +215,8 @@ class TableViewController: UITableViewController {
         newReminderDetail = reminderDetailVC.reminderDetail
         //gets the due date for the reminder
         newReminderDueDate = reminderDetailVC.reminderDueDate
+        
+       
         
         
         //creates a String array to act as the value in reminder info
@@ -295,12 +315,9 @@ class TableViewController: UITableViewController {
 //    }
     
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
+    
+    //Override to support rearranging the table view.
+    
 
 
     // Override to support conditional rearranging of the table view.
