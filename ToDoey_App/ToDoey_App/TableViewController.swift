@@ -25,6 +25,7 @@ class TableViewController: UITableViewController {
     var reminderInfo: [String:[String]] = [:]
     var appData:NSMutableDictionary = [:]
     var indexOfCell: String = ""
+    var timeReminderWasAssigned:String = ""
 
 
     override func viewDidLoad() {
@@ -57,7 +58,7 @@ class TableViewController: UITableViewController {
         }
         
         //changes the timer for each cell after every minute
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+60.0){
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+10.0){
             self.tableView.reloadData()
         }
         
@@ -124,13 +125,22 @@ class TableViewController: UITableViewController {
         if reminderInfo[cell.cellTitle.text!]![1] != ""{
             cell.cellDueDate.text = "Due on: " + reminderInfo[cell.cellTitle.text!]![1]
             cell.cellDaysLeft.text = getDateDifference(dueDate: reminderInfo[cell.cellTitle.text!]![1])
+            cell.cellBar.setProgress(getValForCellBar(dueDate: reminderInfo[cell.cellTitle.text!]![1], dateAdded: reminderInfo[cell.cellTitle.text!]![2]), animated: true)
+            if getValForCellBar(dueDate: reminderInfo[cell.cellTitle.text!]![1], dateAdded: reminderInfo[cell.cellTitle.text!]![2]) > Float(1){
+                cell.cellBar.progressTintColor = .red
+            }
             
+            //this set the value in the array for each reminder to the order
+            //of what it should be in.  IT DOESN'T WORK
+            //keep here in case I need it some other time
+            /*
             if reminderInfo[cell.cellTitle.text!]?.count==3{
                 reminderInfo[cell.cellTitle.text!]![2] = String(indexPath.row)
             }else{
                 reminderInfo[cell.cellTitle.text!]?.append(String(indexPath.row))
                             print(reminderInfo)
             }
+             */
             
         }else{
             cell.cellDueDate.text = "NO DUE DATE"
@@ -143,6 +153,25 @@ class TableViewController: UITableViewController {
         cell.layer.cornerRadius = 20
 
         return cell
+    }
+    
+    func getValForCellBar(dueDate:String, dateAdded:String) -> Float{
+        let format = DateFormatter()
+        format.dateStyle = DateFormatter.Style.short
+        format.timeStyle = DateFormatter.Style.short
+        
+        let dueDateAsDate = format.date(from: dueDate)
+        let dateAddedAsDate = format.date(from: dateAdded)!
+        
+        let totalTimeInterval = dueDateAsDate!.timeIntervalSince(dateAddedAsDate)
+        let intervalFromDateAddedToNow = Double(-1)*(dateAddedAsDate.timeIntervalSinceNow)
+        
+        //print("Total time Interval is " + String(totalTimeInterval))
+        //print("Interval from when the reminder was added is " + String(intervalFromDateAddedToNow))
+        
+        //print("The value of the progres bar is now " + String(Float(intervalFromDateAddedToNow/totalTimeInterval)))
+        
+        return Float(intervalFromDateAddedToNow/totalTimeInterval)
     }
     
     
@@ -246,6 +275,8 @@ class TableViewController: UITableViewController {
         //gets the due date for the reminder
         newReminderDueDate = reminderDetailVC.reminderDueDate
         
+        timeReminderWasAssigned = reminderDetailVC.dateAssigned
+        
        
         
         
@@ -255,6 +286,9 @@ class TableViewController: UITableViewController {
         detailsArray.append(newReminderDetail)
         //adds the due date to the value array
         detailsArray.append(newReminderDueDate)
+        //adds when the assignment was added
+        detailsArray.append(timeReminderWasAssigned)
+        
         
         
         
@@ -370,6 +404,7 @@ class TableViewController: UITableViewController {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
         let documentPath = paths[0] as NSString
         let plistPath = documentPath.appendingPathComponent(plistFileName)
+        print(plistPath)
         return plistPath
     }
     
@@ -477,6 +512,7 @@ class TableViewController: UITableViewController {
         return plist
     }*/
     //this works
+    
     
     
     

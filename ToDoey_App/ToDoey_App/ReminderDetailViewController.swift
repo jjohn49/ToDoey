@@ -17,8 +17,14 @@ class ReminderDetailViewController: UIViewController {
     //reminder details
     var reminderDetail: String = ""
     
+    
     //Used to send the due date over the segue
     var reminderDueDate:String = ""
+    
+    //date that the reminder was added
+    //going to use this to calculate how far
+    //the progress bar should be
+    var dateAssigned:String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +78,8 @@ class ReminderDetailViewController: UIViewController {
         dueDateFormat.timeStyle = DateFormatter.Style.short
         
         reminderDueDate = dueDateFormat.string(from: dueDate.date)
+        
+        dateAssigned = dueDateFormat.string(from:Date())
        
         //print("Reminder due date is " + reminderDueDate)
         
