@@ -13,6 +13,14 @@ class CustomTableViewCell: UITableViewCell{
     @IBOutlet weak var cellDueDate: UILabel!
     @IBOutlet weak var cellDaysLeft: UILabel!
     @IBOutlet weak var cellBar: UIProgressView!
+    
+    //makes the tableview cell always rounded
+    //before when you did the swipe to delete
+    //the roundedness went away
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        super.contentView.layer.cornerRadius = 20
+    }
 }
 
 class TableViewController: UITableViewController {
@@ -58,7 +66,7 @@ class TableViewController: UITableViewController {
         }
         
         //changes the timer for each cell after every minute
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+10.0){
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+60.0){
             self.tableView.reloadData()
         }
         
@@ -118,10 +126,11 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reminderCell", for: indexPath) as! CustomTableViewCell
         
-        //et cellRow = indexPath.row
+        //let cellRow = indexPath.row
         
-
         cell.cellTitle.text = data[indexPath.row]
+        //makes the title bold and bigger
+        cell.cellTitle.font = UIFont.boldSystemFont(ofSize: 25.0)
         if reminderInfo[cell.cellTitle.text!]![1] != ""{
             cell.cellDueDate.text = "Due on: " + reminderInfo[cell.cellTitle.text!]![1]
             cell.cellDaysLeft.text = getDateDifference(dueDate: reminderInfo[cell.cellTitle.text!]![1])
@@ -150,7 +159,7 @@ class TableViewController: UITableViewController {
         //this sets the background color of eavh cell
         //cell.backgroundColor = UIColor.blue //find the light blue shade RGB values
         //Makes the cells have rounded corners
-        cell.layer.cornerRadius = 20
+        //cell.layer.cornerRadius = 20
 
         return cell
     }
@@ -470,9 +479,13 @@ class TableViewController: UITableViewController {
                 temp.remove(at: index)
             }
         }
-        let last = temp.removeFirst()
+        if !temp.isEmpty{
+            let last = temp.removeFirst()
+            data.append(last)
+        }
         
-        data.append(last)
+        
+        
         
         for x in removed{
             data.append(x)
