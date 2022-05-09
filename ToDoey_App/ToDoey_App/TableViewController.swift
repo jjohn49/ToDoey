@@ -56,9 +56,9 @@ class TableViewController: UITableViewController {
         /*for x in reminderInfo.keys{
             data.append(x)
         }*/
-        if reminderInfo.keys.count > 0{
-            getOrderOfReminder()
-        }
+        //if reminderInfo.keys.count > 0{
+        getOrderOfReminder()
+        //}
         
         DispatchQueue.main.async {
             //self.getOrderOfReminder()
@@ -134,7 +134,13 @@ class TableViewController: UITableViewController {
         if reminderInfo[cell.cellTitle.text!]![1] != ""{
             cell.cellDueDate.text = "Due on: " + reminderInfo[cell.cellTitle.text!]![1]
             cell.cellDaysLeft.text = getDateDifference(dueDate: reminderInfo[cell.cellTitle.text!]![1])
+            //Sets the progress in the progress bar
             cell.cellBar.setProgress(getValForCellBar(dueDate: reminderInfo[cell.cellTitle.text!]![1], dateAdded: reminderInfo[cell.cellTitle.text!]![2]), animated: true)
+            
+            
+            print(getValForCellBar(dueDate: reminderInfo[cell.cellTitle.text!]![1], dateAdded: reminderInfo[cell.cellTitle.text!]![2]))
+            
+            //sets the progress bar to red if the remimnder is past due
             if getValForCellBar(dueDate: reminderInfo[cell.cellTitle.text!]![1], dateAdded: reminderInfo[cell.cellTitle.text!]![2]) > Float(1){
                 cell.cellBar.progressTintColor = .red
             }
@@ -196,6 +202,7 @@ class TableViewController: UITableViewController {
             data.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             deleteFromPlist(key: del)
+            //print("Tried to delete " + del)
         }
     }
     
@@ -204,6 +211,7 @@ class TableViewController: UITableViewController {
         if FileManager.default.fileExists(atPath: path){
             let data = NSMutableDictionary(contentsOfFile: path) ?? ["":[""]]
             data.removeObject(forKey: key)
+            //print(data)
             data.write(toFile: path, atomically: true)
         }
     }
@@ -484,9 +492,6 @@ class TableViewController: UITableViewController {
             data.append(last)
         }
         
-        
-        
-        
         for x in removed{
             data.append(x)
         }
@@ -508,25 +513,9 @@ class TableViewController: UITableViewController {
         print(documentDirectoryURL.appendingPathComponent("StorageLocation.plist"))
         return documentDirectoryURL.appendingPathComponent("StorageLocation.plist")
     }
-    //saves the reminder on your phone for local storage
-    func saveReminder(_ plist: Any)throws{
-        let plistData = try PropertyListSerialization.data(fromPropertyList: plist, format: .xml, options: 0)
-        try plistData.write(to: plistURL)
-    }
-    //suppose to load the reminders from locals torage
-    func loadreminder() throws -> [String:String]
-    {
-        let data = try Data(contentsOf: plistURL)
-        //print(data)
-        //this isn't working
-        guard let plist = try PropertyListSerialization.propertyList(from: data, format: nil) as? [String:String] else {
-            return [:]
-        }
-        return plist
-    }*/
-    //this works
     
     
     
     
+*/
 }
