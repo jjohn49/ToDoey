@@ -49,6 +49,7 @@ class TableViewController: UITableViewController {
     var newReminderDetail: String = ""
     var newReminderDueDate: String = ""
     var timeReminderWasAssigned:String = ""
+    var colorChosenForCell:String = ""
 
 
     override func viewDidLoad() {
@@ -150,7 +151,10 @@ class TableViewController: UITableViewController {
         cell.cellTitle.font = UIFont.boldSystemFont(ofSize: 25.0)
         if let reminderDic = reminderInfo[cell.cellTitle.text!]{
             if reminderDic["Due Date"] != ""{
-                if let ddate = reminderDic["Due Date"], let dAdded = reminderDic["Date Added"]{
+                if let ddate = reminderDic["Due Date"], let dAdded = reminderDic["Date Added"], let col = reminderDic["Color"]{
+                    
+                    setCellColor(cell: cell, color: col)
+                    
                     cell.cellDueDate.text = "Due on: " + ddate
                     cell.cellDaysLeft.text = getDateDifference(dueDate: ddate)
                     //sets the cellbar progress
@@ -214,6 +218,27 @@ class TableViewController: UITableViewController {
         //cell.layer.cornerRadius = 20
 
         return cell
+    }
+    
+    func setCellColor(cell:CustomTableViewCell, color:String){
+        switch color{
+        case "Red":
+            cell.backgroundColor = .red
+        case "Orange":
+            cell.backgroundColor = .orange
+        case "Yellow":
+            cell.backgroundColor = .yellow
+        case "Green":
+            cell.backgroundColor = .systemGreen
+        case "Blue":
+            cell.backgroundColor = .blue
+        case "Purple":
+            cell.backgroundColor = .purple
+        case "Pink":
+            cell.backgroundColor = .systemPink
+        default:
+            print("")
+        }
     }
     
     func getValForCellBar(dueDate:String, dateAdded:String) -> Float{
@@ -340,6 +365,8 @@ class TableViewController: UITableViewController {
         
         timeReminderWasAssigned = reminderDetailVC.dateAssigned
         
+        colorChosenForCell = reminderDetailVC.colorOfReminder
+        
        
         
         
@@ -354,10 +381,11 @@ class TableViewController: UITableViewController {
         
         //Removed the array and made a dictionary to make it more readable
         //Also its easier to add new stuff to it
-        var detailsDic: Dictionary<String,String> = [
+        let detailsDic: Dictionary<String,String> = [
             "Description":newReminderDetail,
             "Due Date": newReminderDueDate,
-            "Date Added": timeReminderWasAssigned
+            "Date Added": timeReminderWasAssigned,
+            "Color": colorChosenForCell
         ]
         
         

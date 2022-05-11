@@ -7,7 +7,10 @@
 
 import UIKit
 
-class ReminderDetailViewController: UIViewController {
+class ReminderDetailViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource{
+    
+    
+    
 
     @IBOutlet weak var reminderDetails: UITextField!
     //reminder title
@@ -17,6 +20,9 @@ class ReminderDetailViewController: UIViewController {
     //reminder details
     var reminderDetail: String = ""
     
+    @IBOutlet weak var colorPicker: UIPickerView!
+    var colorOfReminder:String = ""
+    let colorsToChoose: [String] = ["Color", "Red", "Orange", "Yellow", "Green", "Blue", "Purple", "Pink"]
     
     //Used to send the due date over the segue
     var reminderDueDate:String = ""
@@ -28,7 +34,22 @@ class ReminderDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        colorPicker.delegate = self
+        colorPicker.dataSource = self
         hideKeyboard()
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return colorsToChoose[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return colorsToChoose.count
     }
     
     @IBAction func cancel(segue:UIStoryboardSegue) {
@@ -45,6 +66,8 @@ class ReminderDetailViewController: UIViewController {
         self.navigationController?.navigationBar.addGestureRecognizer(self.gestureToHidkeKeyboard())
     }
     
+    
+    
     //create a gesture so when you tap off the UITextField the keyboard goes away
     private func gestureToHidkeKeyboard() -> UIGestureRecognizer{
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(self.view.endEditing(_:)))
@@ -56,6 +79,7 @@ class ReminderDetailViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "doneSegue"{
             reminder = reminderDetails.text!
+            colorOfReminder = colorsToChoose[colorPicker.selectedRow(inComponent: 0)]
         }
         else if segue.identifier == "cancelSegue"{
             reminder = ""

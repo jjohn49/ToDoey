@@ -68,7 +68,6 @@
                                             </constraints>
                                         </stackView>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.78412245800000002" green="0.90161823829999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <constraints>
                                         <constraint firstItem="vta-vt-Pb5" firstAttribute="leading" secondItem="wZX-xa-v3v" secondAttribute="leading" constant="20" symbolic="YES" id="HS7-h7-bsY"/>
                                         <constraint firstItem="vta-vt-Pb5" firstAttribute="top" secondItem="wZX-xa-v3v" secondAttribute="top" id="Z6F-T4-hnG"/>
@@ -178,8 +177,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="73" translatesAutoresizingMaskIntoConstraints="NO" id="G2A-QG-ofF">
-                                <rect key="frame" x="0.0" y="44" width="428" height="828"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="34" translatesAutoresizingMaskIntoConstraints="NO" id="G2A-QG-ofF">
+                                <rect key="frame" x="0.0" y="44" width="428" height="610"/>
                                 <subviews>
                                     <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UpI-Qa-l5e">
                                         <rect key="frame" x="0.0" y="0.0" width="428" height="44"/>
@@ -202,35 +201,48 @@
                                         </items>
                                     </navigationBar>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Task Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1M5-FF-oIJ">
-                                        <rect key="frame" x="0.0" y="117" width="428" height="50"/>
+                                        <rect key="frame" x="0.0" y="78" width="428" height="60"/>
                                         <color key="backgroundColor" red="0.78412245800000002" green="0.90161823829999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="BYk-Zg-1ZH"/>
+                                            <constraint firstAttribute="height" constant="60" id="BYk-Zg-1ZH"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="RRJ-j9-1gQ">
-                                        <rect key="frame" x="0.0" y="240" width="428" height="299"/>
-                                        <color key="backgroundColor" red="0.78412245800000002" green="0.90161823829999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="59" translatesAutoresizingMaskIntoConstraints="NO" id="jFq-Vb-vJ9">
-                                        <rect key="frame" x="0.0" y="612" width="428" height="216"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nph-cz-PkK">
+                                        <rect key="frame" x="0.0" y="172" width="428" height="216"/>
                                         <subviews>
-                                            <datePicker contentMode="scaleToFill" restorationIdentifier="dueDate" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="fEU-U1-t4F">
-                                                <rect key="frame" x="0.0" y="0.0" width="428" height="216"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" borderStyle="roundedRect" placeholder="Description" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="RRJ-j9-1gQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="250" height="216"/>
                                                 <color key="backgroundColor" red="0.78412245800000002" green="0.90161823829999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="216" id="D4s-h6-t37"/>
+                                                    <constraint firstAttribute="width" constant="250" id="27S-3s-RS2"/>
+                                                    <constraint firstAttribute="height" constant="150" id="XIl-OV-JQQ"/>
                                                 </constraints>
-                                                <connections>
-                                                    <action selector="dueDateChanger:" destination="iMH-gT-IoI" eventType="valueChanged" id="5U2-kp-lLR"/>
-                                                </connections>
-                                            </datePicker>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <pickerView contentMode="scaleToFill" restorationIdentifier="colorPicker" translatesAutoresizingMaskIntoConstraints="NO" id="JlC-kD-clG">
+                                                <rect key="frame" x="250" y="0.0" width="178" height="216"/>
+                                                <accessibility key="accessibilityConfiguration" label="Color">
+                                                    <bool key="isElement" value="YES"/>
+                                                </accessibility>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="BUC-gG-nlq"/>
+                                                </constraints>
+                                            </pickerView>
                                         </subviews>
                                     </stackView>
+                                    <datePicker contentMode="scaleToFill" restorationIdentifier="dueDate" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="fEU-U1-t4F">
+                                        <rect key="frame" x="0.0" y="422" width="428" height="188"/>
+                                        <color key="backgroundColor" red="0.78412245800000002" green="0.90161823829999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="188" id="D4s-h6-t37"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="dueDateChanger:" destination="iMH-gT-IoI" eventType="valueChanged" id="5U2-kp-lLR"/>
+                                        </connections>
+                                    </datePicker>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -245,6 +257,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="YZd-CN-klV"/>
                     <connections>
+                        <outlet property="colorPicker" destination="JlC-kD-clG" id="ElG-g6-nzD"/>
                         <outlet property="dueDate" destination="fEU-U1-t4F" id="nwf-jf-Awj"/>
                         <outlet property="reminderDetailBox" destination="RRJ-j9-1gQ" id="Mwu-TZ-Qs9"/>
                         <outlet property="reminderDetails" destination="1M5-FF-oIJ" id="zYl-xP-fUC"/>
