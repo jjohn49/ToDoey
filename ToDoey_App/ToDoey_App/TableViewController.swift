@@ -21,6 +21,14 @@ class CustomTableViewCell: UITableViewCell{
         super.awakeFromNib()
         super.contentView.layer.cornerRadius = 20
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        //helps with clearing the bug that made
+        //the same reminder repeat twice
+        self.cellTitle.isHidden = true
+    }
 }
 
 class TableViewController: UITableViewController {
@@ -30,7 +38,7 @@ class TableViewController: UITableViewController {
     var newReminderDetail: String = ""
     var newReminderDueDate: String = ""
     var selectedReminder: String = ""
-    var reminderInfo: [String:[String]] = [:]
+    var reminderInfo: [String:[String:String]] = [:]
     var appData:NSMutableDictionary = [:]
     var indexOfCell: String = ""
     var timeReminderWasAssigned:String = ""
@@ -46,7 +54,7 @@ class TableViewController: UITableViewController {
         
         data = [String]()
         
-        reminderInfo = appData as! Dictionary<String,Array<String>>
+        reminderInfo = appData as! Dictionary<String,Dictionary<String,String>>
         //print("start of reminder info xxxxxxxxxxxxxxxx")
         print(reminderInfo)
         
@@ -128,22 +136,49 @@ class TableViewController: UITableViewController {
         
         //let cellRow = indexPath.row
         
+        
+        
         cell.cellTitle.text = data[indexPath.row]
         //makes the title bold and bigger
         cell.cellTitle.font = UIFont.boldSystemFont(ofSize: 25.0)
-        if reminderInfo[cell.cellTitle.text!]![1] != ""{
-            cell.cellDueDate.text = "Due on: " + reminderInfo[cell.cellTitle.text!]![1]
-            cell.cellDaysLeft.text = getDateDifference(dueDate: reminderInfo[cell.cellTitle.text!]![1])
+        if let reminderDic = reminderInfo[cell.cellTitle.text!]{
+            if reminderDic["Due Date"] != ""{
+                if let ddate = reminderDic["Due Date"], let dAdded = reminderDic["Date Added"]{
+                    cell.cellDueDate.text = "Due on: " + ddate
+                    cell.cellDaysLeft.text = getDateDifference(dueDate: ddate)
+                    //sets the cellbar progress
+                    let newProg = getValForCellBar(dueDate: ddate, dateAdded: dAdded)
+                    cell.cellBar.setProgress(newProg, animated: true)
+                    print(newProg)
+                    
+                    if newProg > Float(1){
+                        cell.cellBar.progressTintColor = .red
+                    }
+                }
+            }else{
+                cell.cellDueDate.text = "NO DUE DATE"
+                cell.cellDaysLeft.text = "-----------"
+            }
+        }
+        
+        //somehow fixes the big of multiple cells appearing for the same task
+        cell.cellTitle.isHidden = false
+        
+        //old code from when I was using an array
+        
+        /*if reminderInfo[cell.cellTitle.text!]!["Due Date"] != ""{
+            cell.cellDueDate.text = "Due on: " + reminderInfo[cell.cellTitle.text!]!["Due Date"]!
+            cell.cellDaysLeft.text = getDateDifference(dueDate: reminderInfo[cell.cellTitle.text!]!["Due Date"]!)
             //Sets the progress in the progress bar
-            cell.cellBar.setProgress(getValForCellBar(dueDate: reminderInfo[cell.cellTitle.text!]![1], dateAdded: reminderInfo[cell.cellTitle.text!]![2]), animated: true)
+            cell.cellBar.setProgress(getValForCellBar(dueDate: reminderInfo[cell.cellTitle.text!]!["Due Date"]!  , dateAdded: reminderInfo[cell.cellTitle.text!]!["Date Added"]), animated: true)
             
             
-            print(getValForCellBar(dueDate: reminderInfo[cell.cellTitle.text!]![1], dateAdded: reminderInfo[cell.cellTitle.text!]![2]))
+            print(getValForCellBar(dueDate: reminderInfo[cell.cellTitle.text!]!["Due Date"], dateAdded: reminderInfo[cell.cellTitle.text!]!["Date Added"]))
             
             //sets the progress bar to red if the remimnder is past due
-            if getValForCellBar(dueDate: reminderInfo[cell.cellTitle.text!]![1], dateAdded: reminderInfo[cell.cellTitle.text!]![2]) > Float(1){
+            if getValForCellBar(dueDate: reminderInfo[cell.cellTitle.text!]!["Due Date"], dateAdded: reminderInfo[cell.cellTitle.text!]!["Date Added"]) > Float(1){
                 cell.cellBar.progressTintColor = .red
-            }
+            }*/
             
             //this set the value in the array for each reminder to the order
             //of what it should be in.  IT DOESN'T WORK
@@ -155,12 +190,12 @@ class TableViewController: UITableViewController {
                 reminderInfo[cell.cellTitle.text!]?.append(String(indexPath.row))
                             print(reminderInfo)
             }
-             */
+             
             
         }else{
             cell.cellDueDate.text = "NO DUE DATE"
             cell.cellDaysLeft.text = "-----------"
-        }
+        }*/
        
         //this sets the background color of eavh cell
         //cell.backgroundColor = UIColor.blue //find the light blue shade RGB values
@@ -297,14 +332,22 @@ class TableViewController: UITableViewController {
        
         
         
-        //creates a String array to act as the value in reminder info
+        /*//creates a String array to act as the value in reminder info
         var detailsArray:[String] = []
         // adds the details to the value array
         detailsArray.append(newReminderDetail)
         //adds the due date to the value array
         detailsArray.append(newReminderDueDate)
         //adds when the assignment was added
-        detailsArray.append(timeReminderWasAssigned)
+        detailsArray.append(timeReminderWasAssigned)*/
+        
+        //Removed the array and made a dictionary to make it more readable
+        //Also its easier to add new stuff to it
+        var detailsDic: Dictionary<String,String> = [
+            "Description":newReminderDetail,
+            "Due Date": newReminderDueDate,
+            "Date Added": timeReminderWasAssigned
+        ]
         
         
         
@@ -323,7 +366,7 @@ class TableViewController: UITableViewController {
             tableView.reloadData()
             print(reminderInfo)
             
-            reminderInfo.updateValue(detailsArray, forKey: newReminder)
+            reminderInfo.updateValue(detailsDic, forKey: newReminder)
             
             //sends the data to the plist
             let path = self.getPath()
@@ -367,8 +410,16 @@ class TableViewController: UITableViewController {
             //Initializes the data from the cell selected
             reminderInfoVC.reminderTitle.title = name
             print((cell.cellTitle.text)! as String)
+            if let des = reminderInfo[name]!["Description"], let due = reminderInfo[name]!["Due Date"]{
+                reminderInfoVC.reminderDetails = des
+                reminderInfoVC.reminderDueDate = due
+            }
+            
+            //old code
+            
+            /*
             reminderInfoVC.reminderDetails = (reminderInfo[name]?[0])!
-            reminderInfoVC.reminderDueDate = (reminderInfo[name]?[1])!
+            reminderInfoVC.reminderDueDate = (reminderInfo[name]?[1])!*/
             
             // if we get the name of the cell put that variable name in the place holder area
 //            reminderInfoVC.reminder = (name of cell)
@@ -447,8 +498,8 @@ class TableViewController: UITableViewController {
             //print(temp)
             var xDueDate: String = ""
             var earliest : String = ""
-            if let xArr = reminderInfo[x]{
-                xDueDate = xArr[1]
+            if let xDic = reminderInfo[x]{
+                xDueDate = xDic["Due Date"]!
                 earliest = x
             }
             if xDueDate == ""{
@@ -464,8 +515,8 @@ class TableViewController: UITableViewController {
                 //print("X is " + x)
                 //print("Y is " + y)
                 var yDueDate: String = ""
-                if let yArr = reminderInfo[y]{
-                    yDueDate = yArr[1]
+                if let yDic = reminderInfo[y]{
+                    yDueDate = yDic["Due Date"]!
                 }
                 if yDueDate == ""{
                     removed.append(y)
