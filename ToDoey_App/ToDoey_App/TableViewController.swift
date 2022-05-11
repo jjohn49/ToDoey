@@ -32,15 +32,22 @@ class CustomTableViewCell: UITableViewCell{
 }
 
 class TableViewController: UITableViewController {
+    //heirarchy of the variables used
     
+    //used for sending to the plist for local storage
+    var appData:NSMutableDictionary = [:]
+    
+    //used in getting the data from plist and managing it through the code
+    var reminderInfo: [String:[String:String]] = [:]
+    
+    //Unsure what this really does BUT IS NECESSARY
+    //I think its mostly used for the Table View Cells
     var data = [String]()
+    
+    //The rest are what is stored in the nested Dictionary in the reminderInfo var
     var newReminder: String = ""
     var newReminderDetail: String = ""
     var newReminderDueDate: String = ""
-    var selectedReminder: String = ""
-    var reminderInfo: [String:[String:String]] = [:]
-    var appData:NSMutableDictionary = [:]
-    var indexOfCell: String = ""
     var timeReminderWasAssigned:String = ""
 
 
