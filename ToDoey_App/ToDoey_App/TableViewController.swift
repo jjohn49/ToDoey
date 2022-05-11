@@ -155,16 +155,20 @@ class TableViewController: UITableViewController {
                     cell.cellDaysLeft.text = getDateDifference(dueDate: ddate)
                     //sets the cellbar progress
                     let newProg = getValForCellBar(dueDate: ddate, dateAdded: dAdded)
-                    cell.cellBar.setProgress(newProg, animated: true)
-                    print(newProg)
-                    
-                    if newProg > Float(1){
+                    if newProg.isLess(than: 0.000){
                         cell.cellBar.progressTintColor = .red
+                        cell.cellBar.setProgress(1.0, animated: true)
+                    }else{
+                        cell.cellBar.progressTintColor = .blue
+                        cell.cellBar.setProgress(newProg, animated: true)
                     }
+                    print("NEW PROG IS " + String(newProg) + " FOR " + cell.cellTitle.text!)
                 }
             }else{
                 cell.cellDueDate.text = "NO DUE DATE"
                 cell.cellDaysLeft.text = "-----------"
+                cell.cellBar.progressTintColor = .systemMint
+                cell.cellBar.setProgress(1.0, animated: true)
             }
         }
         
