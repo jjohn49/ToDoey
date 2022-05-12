@@ -14,6 +14,8 @@ class CustomTableViewCell: UITableViewCell{
     @IBOutlet weak var cellDaysLeft: UILabel!
     @IBOutlet weak var cellBar: UIProgressView!
     
+   
+    
     //makes the tableview cell always rounded
     //before when you did the swipe to delete
     //the roundedness went away
@@ -29,6 +31,7 @@ class CustomTableViewCell: UITableViewCell{
         //the same reminder repeat twice
         self.cellTitle.isHidden = true
     }
+    
 }
 
 class TableViewController: UITableViewController {
@@ -155,6 +158,7 @@ class TableViewController: UITableViewController {
                     
                     setCellColor(cell: cell, color: col)
                     
+                    
                     cell.cellDueDate.text = "Due on: " + ddate
                     cell.cellDaysLeft.text = getDateDifference(dueDate: ddate)
                     //sets the cellbar progress
@@ -223,22 +227,46 @@ class TableViewController: UITableViewController {
     func setCellColor(cell:CustomTableViewCell, color:String){
         switch color{
         case "Red":
-            cell.backgroundColor = .red
+            cell.contentView.backgroundColor = .red
         case "Orange":
-            cell.backgroundColor = .orange
+            cell.contentView.backgroundColor = .orange
         case "Yellow":
-            cell.backgroundColor = .yellow
+            cell.contentView.backgroundColor = .yellow
         case "Green":
-            cell.backgroundColor = .systemGreen
+            cell.contentView.backgroundColor = .green
         case "Blue":
-            cell.backgroundColor = .blue
+            cell.contentView.backgroundColor = getUIColor(hex: "94E6B5")
         case "Purple":
-            cell.backgroundColor = .purple
+            cell.contentView.backgroundColor = .purple
         case "Pink":
-            cell.backgroundColor = .systemPink
+            cell.contentView.backgroundColor = .systemPink
         default:
-            print("")
+            cell.contentView.backgroundColor = .blue
         }
+    }
+    
+    //not showing up for some reason
+    func getUIColor(hex:String, alpha: Double = 1.0)-> UIColor?{
+        var cleanHexString = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+        
+        if (cleanHexString.hasPrefix("#")){
+            cleanHexString.remove(at: cleanHexString.startIndex)
+        }
+        
+        if cleanHexString.count != 6 {
+            return nil
+        }
+        
+        var rgbVal: UInt64 = 0
+        Scanner(string: cleanHexString).scanHexInt64(&rgbVal)
+        
+        return UIColor(
+        red: CGFloat((rgbVal & 0xFF0000) >> 16) / 255.0,
+        green: CGFloat((rgbVal & 0x00FF00) >> 8) / 255.0,
+        blue: CGFloat(rgbVal & 0x0000FF) / 255.0,
+        alpha: CGFloat(1.0)
+        )
+        
     }
     
     func getValForCellBar(dueDate:String, dateAdded:String) -> Float{
