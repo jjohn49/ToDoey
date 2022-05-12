@@ -226,7 +226,7 @@ class TableViewController: UITableViewController {
     
     func setCellColor(cell:CustomTableViewCell, color:String){
         
-        print("Cell is trying to be changed to color " + color)
+        //print("Cell is trying to be changed to color " + color)
         switch color{
         case "Red":
             cell.contentView.backgroundColor = getUIColor(hex: "FD5A5A")
@@ -249,7 +249,7 @@ class TableViewController: UITableViewController {
     
     //not showing up for some reason
     func getUIColor(hex:String, alpha: Double = 1.0)-> UIColor?{
-        print("COLOR WAS TRIED TO CHANGE")
+        //print("COLOR WAS TRIED TO CHANGE")
         var cleanHexString = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         
         if (cleanHexString.hasPrefix("#")){
