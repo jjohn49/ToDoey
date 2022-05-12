@@ -154,10 +154,7 @@ class TableViewController: UITableViewController {
         cell.cellTitle.font = UIFont.boldSystemFont(ofSize: 25.0)
         if let reminderDic = reminderInfo[cell.cellTitle.text!]{
             if reminderDic["Due Date"] != ""{
-                if let ddate = reminderDic["Due Date"], let dAdded = reminderDic["Date Added"], let col = reminderDic["Color"]{
-                    
-                    setCellColor(cell: cell, color: col)
-                    
+                if let ddate = reminderDic["Due Date"], let dAdded = reminderDic["Date Added"]{
                     
                     cell.cellDueDate.text = "Due on: " + ddate
                     cell.cellDaysLeft.text = getDateDifference(dueDate: ddate)
@@ -178,6 +175,9 @@ class TableViewController: UITableViewController {
                 cell.cellBar.progressTintColor = .systemMint
                 cell.cellBar.setProgress(1.0, animated: true)
             }
+            
+            let colorOfCell = reminderDic["Color"]!
+            setCellColor(cell: cell, color: colorOfCell)
         }
         
         //somehow fixes the big of multiple cells appearing for the same task
@@ -225,28 +225,31 @@ class TableViewController: UITableViewController {
     }
     
     func setCellColor(cell:CustomTableViewCell, color:String){
+        
+        print("Cell is trying to be changed to color " + color)
         switch color{
         case "Red":
-            cell.contentView.backgroundColor = .red
+            cell.contentView.backgroundColor = getUIColor(hex: "FD5A5A")
         case "Orange":
-            cell.contentView.backgroundColor = .orange
+            cell.contentView.backgroundColor = getUIColor(hex: "F9AE62")
         case "Yellow":
-            cell.contentView.backgroundColor = .yellow
+            cell.contentView.backgroundColor = getUIColor(hex: "FAEC68")
         case "Green":
-            cell.contentView.backgroundColor = .green
-        case "Blue":
             cell.contentView.backgroundColor = getUIColor(hex: "94E6B5")
+        case "Blue":
+            cell.contentView.backgroundColor = getUIColor(hex: "3F75F5")
         case "Purple":
-            cell.contentView.backgroundColor = .purple
+            cell.contentView.backgroundColor = getUIColor(hex: "A77EF9")
         case "Pink":
-            cell.contentView.backgroundColor = .systemPink
+            cell.contentView.backgroundColor = getUIColor(hex: "F68AEB")
         default:
-            cell.contentView.backgroundColor = .blue
+            cell.contentView.backgroundColor = getUIColor(hex: "6FBDF9")
         }
     }
     
     //not showing up for some reason
     func getUIColor(hex:String, alpha: Double = 1.0)-> UIColor?{
+        print("COLOR WAS TRIED TO CHANGE")
         var cleanHexString = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         
         if (cleanHexString.hasPrefix("#")){
@@ -264,7 +267,7 @@ class TableViewController: UITableViewController {
         red: CGFloat((rgbVal & 0xFF0000) >> 16) / 255.0,
         green: CGFloat((rgbVal & 0x00FF00) >> 8) / 255.0,
         blue: CGFloat(rgbVal & 0x0000FF) / 255.0,
-        alpha: CGFloat(1.0)
+        alpha: alpha
         )
         
     }
