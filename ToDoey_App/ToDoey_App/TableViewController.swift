@@ -35,6 +35,17 @@ class CustomTableViewCell: UITableViewCell{
 }
 
 class TableViewController: UITableViewController {
+    
+    //this is inorder to send the data to the widget
+    //Codable objects are able to be written to shared storage
+    //created via the app group and stored in something called "UserDefaults"
+    struct reminder: Codable{
+        var reminder: String
+        var description: String
+        var dueDate: String
+        var assigned: String
+        var color: String
+    }
     //heirarchy of the variables used
     
     //used for sending to the plist for local storage
@@ -167,7 +178,7 @@ class TableViewController: UITableViewController {
                         cell.cellBar.progressTintColor = .blue
                         cell.cellBar.setProgress(newProg, animated: true)
                     }
-                    print("NEW PROG IS " + String(newProg) + " FOR " + cell.cellTitle.text!)
+                    //print("NEW PROG IS " + String(newProg) + " FOR " + cell.cellTitle.text!)
                 }
             }else{
                 cell.cellDueDate.text = "NO DUE DATE"

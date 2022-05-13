@@ -15,6 +15,11 @@
 		1EF12F32281617E7003FCD7E /* ToDoey_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF12F31281617E7003FCD7E /* ToDoey_AppTests.swift */; };
 		1EF12F3C281617E7003FCD7E /* ToDoey_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF12F3B281617E7003FCD7E /* ToDoey_AppUITests.swift */; };
 		1EF12F3E281617E7003FCD7E /* ToDoey_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF12F3D281617E7003FCD7E /* ToDoey_AppUITestsLaunchTests.swift */; };
+		1EF510F1282EA61200A069D4 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EF510F0282EA61200A069D4 /* WidgetKit.framework */; };
+		1EF510F3282EA61200A069D4 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EF510F2282EA61200A069D4 /* SwiftUI.framework */; };
+		1EF510F6282EA61200A069D4 /* ToDoeyWidgey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF510F5282EA61200A069D4 /* ToDoeyWidgey.swift */; };
+		1EF510F8282EA61300A069D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1EF510F7282EA61300A069D4 /* Assets.xcassets */; };
+		1EF510FC282EA61300A069D4 /* ToDoeyWidgeyExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 1EF510EE282EA61200A069D4 /* ToDoeyWidgeyExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		7A35279A2819BC11008D7F5B /* ReminderInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3527992819BC11008D7F5B /* ReminderInfoViewController.swift */; };
 		7A71F6BB281771B6003B204D /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A71F6BA281771B6003B204D /* TableViewController.swift */; };
 		7A71F6BD281776D1003B204D /* ReminderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A71F6BC281776D1003B204D /* ReminderDetailViewController.swift */; };
@@ -35,7 +40,28 @@
 			remoteGlobalIDString = 1EF12F16281617E6003FCD7E;
 			remoteInfo = ToDoey_App;
 		};
+		1EF510FA282EA61300A069D4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1EF12F0F281617E6003FCD7E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1EF510ED282EA61200A069D4;
+			remoteInfo = ToDoeyWidgeyExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1EF510FD282EA61300A069D4 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				1EF510FC282EA61300A069D4 /* ToDoeyWidgeyExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1EF12F17281617E6003FCD7E /* ToDoey_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoey_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,6 +76,14 @@
 		1EF12F37281617E7003FCD7E /* ToDoey_AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoey_AppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EF12F3B281617E7003FCD7E /* ToDoey_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoey_AppUITests.swift; sourceTree = "<group>"; };
 		1EF12F3D281617E7003FCD7E /* ToDoey_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoey_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		1EF510EE282EA61200A069D4 /* ToDoeyWidgeyExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ToDoeyWidgeyExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		1EF510F0282EA61200A069D4 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		1EF510F2282EA61200A069D4 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		1EF510F5282EA61200A069D4 /* ToDoeyWidgey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoeyWidgey.swift; sourceTree = "<group>"; };
+		1EF510F7282EA61300A069D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1EF510F9282EA61300A069D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1EF51101282EAD5E00A069D4 /* ToDoey_App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ToDoey_App.entitlements; sourceTree = "<group>"; };
+		1EF51102282EAD9900A069D4 /* ToDoeyWidgeyExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ToDoeyWidgeyExtension.entitlements; sourceTree = "<group>"; };
 		7A3527992819BC11008D7F5B /* ReminderInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderInfoViewController.swift; sourceTree = "<group>"; };
 		7A71F6BA281771B6003B204D /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		7A71F6BC281776D1003B204D /* ReminderDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderDetailViewController.swift; sourceTree = "<group>"; };
@@ -77,15 +111,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1EF510EB282EA61200A069D4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1EF510F3282EA61200A069D4 /* SwiftUI.framework in Frameworks */,
+				1EF510F1282EA61200A069D4 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		1EF12F0E281617E6003FCD7E = {
 			isa = PBXGroup;
 			children = (
+				1EF51102282EAD9900A069D4 /* ToDoeyWidgeyExtension.entitlements */,
 				1EF12F19281617E6003FCD7E /* ToDoey_App */,
 				1EF12F30281617E7003FCD7E /* ToDoey_AppTests */,
 				1EF12F3A281617E7003FCD7E /* ToDoey_AppUITests */,
+				1EF510F4282EA61200A069D4 /* ToDoeyWidgey */,
+				1EF510EF282EA61200A069D4 /* Frameworks */,
 				1EF12F18281617E6003FCD7E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -96,6 +142,7 @@
 				1EF12F17281617E6003FCD7E /* ToDoey_App.app */,
 				1EF12F2D281617E7003FCD7E /* ToDoey_AppTests.xctest */,
 				1EF12F37281617E7003FCD7E /* ToDoey_AppUITests.xctest */,
+				1EF510EE282EA61200A069D4 /* ToDoeyWidgeyExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -103,6 +150,7 @@
 		1EF12F19281617E6003FCD7E /* ToDoey_App */ = {
 			isa = PBXGroup;
 			children = (
+				1EF51101282EAD5E00A069D4 /* ToDoey_App.entitlements */,
 				1EF12F1A281617E6003FCD7E /* AppDelegate.swift */,
 				1EF12F1C281617E6003FCD7E /* SceneDelegate.swift */,
 				7A71F6BA281771B6003B204D /* TableViewController.swift */,
@@ -133,6 +181,25 @@
 			path = ToDoey_AppUITests;
 			sourceTree = "<group>";
 		};
+		1EF510EF282EA61200A069D4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1EF510F0282EA61200A069D4 /* WidgetKit.framework */,
+				1EF510F2282EA61200A069D4 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1EF510F4282EA61200A069D4 /* ToDoeyWidgey */ = {
+			isa = PBXGroup;
+			children = (
+				1EF510F5282EA61200A069D4 /* ToDoeyWidgey.swift */,
+				1EF510F7282EA61300A069D4 /* Assets.xcassets */,
+				1EF510F9282EA61300A069D4 /* Info.plist */,
+			);
+			path = ToDoeyWidgey;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,10 +210,12 @@
 				1EF12F13281617E6003FCD7E /* Sources */,
 				1EF12F14281617E6003FCD7E /* Frameworks */,
 				1EF12F15281617E6003FCD7E /* Resources */,
+				1EF510FD282EA61300A069D4 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				1EF510FB282EA61300A069D4 /* PBXTargetDependency */,
 			);
 			name = ToDoey_App;
 			productName = ToDoey_App;
@@ -189,6 +258,23 @@
 			productReference = 1EF12F37281617E7003FCD7E /* ToDoey_AppUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		1EF510ED282EA61200A069D4 /* ToDoeyWidgeyExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1EF51100282EA61300A069D4 /* Build configuration list for PBXNativeTarget "ToDoeyWidgeyExtension" */;
+			buildPhases = (
+				1EF510EA282EA61200A069D4 /* Sources */,
+				1EF510EB282EA61200A069D4 /* Frameworks */,
+				1EF510EC282EA61200A069D4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ToDoeyWidgeyExtension;
+			productName = ToDoeyWidgeyExtension;
+			productReference = 1EF510EE282EA61200A069D4 /* ToDoeyWidgeyExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -210,6 +296,9 @@
 						CreatedOnToolsVersion = 13.3.1;
 						TestTargetID = 1EF12F16281617E6003FCD7E;
 					};
+					1EF510ED282EA61200A069D4 = {
+						CreatedOnToolsVersion = 13.3.1;
+					};
 				};
 			};
 			buildConfigurationList = 1EF12F12281617E6003FCD7E /* Build configuration list for PBXProject "ToDoey_App" */;
@@ -228,6 +317,7 @@
 				1EF12F16281617E6003FCD7E /* ToDoey_App */,
 				1EF12F2C281617E7003FCD7E /* ToDoey_AppTests */,
 				1EF12F36281617E7003FCD7E /* ToDoey_AppUITests */,
+				1EF510ED282EA61200A069D4 /* ToDoeyWidgeyExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -254,6 +344,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1EF510EC282EA61200A069D4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1EF510F8282EA61300A069D4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +387,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		1EF510EA282EA61200A069D4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1EF510F6282EA61200A069D4 /* ToDoeyWidgey.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -301,6 +407,11 @@
 			isa = PBXTargetDependency;
 			target = 1EF12F16281617E6003FCD7E /* ToDoey_App */;
 			targetProxy = 1EF12F38281617E7003FCD7E /* PBXContainerItemProxy */;
+		};
+		1EF510FB282EA61300A069D4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1EF510ED282EA61200A069D4 /* ToDoeyWidgeyExtension */;
+			targetProxy = 1EF510FA282EA61300A069D4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -441,8 +552,10 @@
 		1EF12F42281617E7003FCD7E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ToDoey_App/ToDoey_App.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5PWVWU8526;
@@ -469,8 +582,10 @@
 		1EF12F43281617E7003FCD7E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ToDoey_App/ToDoey_App.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5PWVWU8526;
@@ -570,6 +685,62 @@
 			};
 			name = Release;
 		};
+		1EF510FE282EA61300A069D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = ToDoeyWidgeyExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5PWVWU8526;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ToDoeyWidgey/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ToDoeyWidgey;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hugh.ToDoey-App.ToDoeyWidgey";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1EF510FF282EA61300A069D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = ToDoeyWidgeyExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5PWVWU8526;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ToDoeyWidgey/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = ToDoeyWidgey;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hugh.ToDoey-App.ToDoeyWidgey";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -605,6 +776,15 @@
 			buildConfigurations = (
 				1EF12F48281617E7003FCD7E /* Debug */,
 				1EF12F49281617E7003FCD7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1EF51100282EA61300A069D4 /* Build configuration list for PBXNativeTarget "ToDoeyWidgeyExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1EF510FE282EA61300A069D4 /* Debug */,
+				1EF510FF282EA61300A069D4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
