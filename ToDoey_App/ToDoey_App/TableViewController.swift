@@ -158,8 +158,6 @@ class TableViewController: UITableViewController {
         
         //let cellRow = indexPath.row
         
-        
-        
         cell.cellTitle.text = data[indexPath.row]
         //makes the title bold and bigger
         cell.cellTitle.font = UIFont.boldSystemFont(ofSize: 25.0)
@@ -255,6 +253,27 @@ class TableViewController: UITableViewController {
             cell.contentView.backgroundColor = getUIColor(hex: "F68AEB")
         default:
             cell.contentView.backgroundColor = getUIColor(hex: "6FBDF9")
+        }
+    }
+    
+    func returnColor(color:String) -> UIColor{
+        switch color{
+        case "Red":
+            return getUIColor(hex: "FD5A5A")!
+        case "Orange":
+            return  getUIColor(hex: "F9AE62")!
+        case "Yellow":
+            return  getUIColor(hex: "FAEC68")!
+        case "Green":
+            return  getUIColor(hex: "94E6B5")!
+        case "Blue":
+            return  getUIColor(hex: "3F75F5")!
+        case "Purple":
+            return  getUIColor(hex: "A77EF9")!
+        case "Pink":
+            return  getUIColor(hex: "F68AEB")!
+        default:
+            return  getUIColor(hex: "6FBDF9")!
         }
     }
     
@@ -490,10 +509,12 @@ class TableViewController: UITableViewController {
             let name: String = (cell.cellTitle?.text)! as String
             //Initializes the data from the cell selected
             reminderInfoVC.reminderTitle.title = name
-            print((cell.cellTitle.text)! as String)
-            if let des = reminderInfo[name]!["Description"], let due = reminderInfo[name]!["Due Date"]{
+            //print((cell.cellTitle.text)! as String)
+            if let des = reminderInfo[name]!["Description"], let due = reminderInfo[name]!["Due Date"], let add = reminderInfo[name]!["Date Added"] , let colStr = reminderInfo[name]!["Color"]{
                 reminderInfoVC.reminderDetails = des
                 reminderInfoVC.reminderDueDate = due
+                reminderInfoVC.reminderAdded=add
+                reminderInfoVC.colorOfBackground = returnColor(color: colStr)
             }
             
             //old code
@@ -619,11 +640,11 @@ class TableViewController: UITableViewController {
                 temp.remove(at: index)
             }
         }
-        if !temp.isEmpty{
+        //changed from !temp.isEmpty
+        if temp.count == 1{
             let last = temp.removeFirst()
             data.append(last)
         }
-        
         for x in removed{
             data.append(x)
         }

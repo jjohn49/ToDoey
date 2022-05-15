@@ -9,12 +9,18 @@ import UIKit
 
 class ReminderInfoViewController: UIViewController {
 
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var dueDateLabel: UILabel!
+    @IBOutlet weak var dateAddedLabel: UILabel!
     @IBOutlet weak var reminderInfo: UITextView!
     @IBOutlet weak var reminderDate: UILabel!
     @IBOutlet weak var reminderTitle: UINavigationItem!
+    @IBOutlet weak var reminderDateAdded: UILabel!
     var reminder = ""
     var reminderDetails = ""
     var reminderDueDate = ""
+    var reminderAdded = ""
+    var colorOfBackground: UIColor = .gray
 //    var dictionary: [String:[String]] = [:]
 //
 //    init(reminder: String, dictionary: [String:[String]]) {
@@ -31,11 +37,32 @@ class ReminderInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        settingLayout()
+        
 //        reminderTitle.title = reminder
         reminderInfo.text = reminderDetails
         reminderDate.text = reminderDueDate
+        reminderDateAdded.text = reminderAdded
+        view.backgroundColor = colorOfBackground
         
         hideKeyboard()
+    }
+    
+    func settingLayout(){
+        //setting the font size for the labels
+        descriptionLabel.font = UIFont.boldSystemFont(ofSize: 25.0)
+        dueDateLabel.font = UIFont.boldSystemFont(ofSize: 25.0)
+        dateAddedLabel.font = UIFont.boldSystemFont(ofSize: 25.0)
+        
+        //making the reminder info boxes rounded
+        reminderInfo.layer.cornerRadius = 20
+        reminderDate.layer.cornerRadius = 20
+        reminderDate.layer.masksToBounds = true
+        reminderDateAdded.layer.cornerRadius = 20
+        reminderDateAdded.layer.masksToBounds = true
+
+
+
     }
     
     func hideKeyboard(){
